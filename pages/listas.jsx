@@ -24,8 +24,6 @@ export default function Home() {
 
                 <main className={styles.main}>
 
-                    {/* <Filtros /> */}
-
                     <section className={`${styles.container} limit`}>
                         <ShowSheetData />
                     </section>

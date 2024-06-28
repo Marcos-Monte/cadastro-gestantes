@@ -43,7 +43,11 @@ export default function ShowSheetData(){
 
                         <Registro 
                             key={index}
-                            conteudo={JSON.stringify(item)}
+                            nome={item.nome}
+                            dn={item.dn}
+                            endereco={item.endereco}
+                            telefone={item.telefone}
+                            equipe={item.equipe}
                         />
 
                         )

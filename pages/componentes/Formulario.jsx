@@ -11,27 +11,37 @@ export default function Formulario(){
 
             <fieldset className={styles.camposFormulario}>
 
-            <legend className={styles.tituloCampos}>Dados da Gestante</legend>
+                <legend className={styles.tituloCampos}>Dados da Gestante</legend>
 
-            <div className={styles.info}>
-                <label className={styles.label} htmlFor="id-nome">Nome</label>
-                <input className={styles.input}type="text" id="id-nome" name="data[nome]" placeholder='Nome Completo'/>
-            </div>
-            
-            <div className={styles.info}>
-                <label className={styles.label} htmlFor="id-dn">D. N..</label>
-                <input className={styles.input} type="date" id="id-dn" name="data[dn]" />
-            </div>
+                <div className={styles.info}>
+                    <label className={styles.label} htmlFor="id-nome">Nome</label>
+                    <input className={styles.input}type="text" id="id-nome" name="data[nome]" placeholder='Nome Completo' required/>
+                </div>
+                
+                <div className={styles.info}>
+                    <label className={styles.label} htmlFor="id-dn">D. N..</label>
+                    <input className={styles.input} type="date" id="id-dn" name="data[dn]" required />
+                </div>
 
-            <div className={styles.info}>
-                <label className={styles.label}htmlFor="id-endereco">Endereço</label>
-                <input className={styles.input} type="text" id="id-endereco" name="data[endereco]" placeholder='Endereço Completo'/>
-            </div>
+                <div className={styles.info}>
+                    <label className={styles.label}htmlFor="id-endereco">Endereço</label>
+                    <input className={styles.input} type="text" id="id-endereco" name="data[endereco]" placeholder='Endereço Completo'required/>
+                </div>
 
-            <div className={styles.info}>
-                <label className={styles.label}htmlFor="id-telefone">Telefone</label>
-                <input className={styles.input} type="tel" id="id-telefone" name="data[telefone]"placeholder='Nome Completo' />
-            </div>
+                <div className={styles.info}>
+                    <label className={styles.label}htmlFor="id-telefone">Telefone</label>
+                    <input className={styles.input} type="tel" id="id-telefone" name="data[telefone]"placeholder='Nome Completo' required/>
+                </div>
+
+                <div className={styles.info}>
+                    <label className={styles.label}htmlFor="id-equipe">Equipe</label>
+                    <select className={styles.input} name="data[equipe]" id="id-equipe" required>
+                        <option className={styles.opcao} value="">Equipe Responsável</option>
+                        <option className={styles.opcao} value="amarela">Amarela</option>
+                        <option className={styles.opcao} value="azul">Azul</option>
+                        <option className={styles.opcao} value="verde">Verde</option>
+                    </select>
+                </div>
 
             </fieldset>
 

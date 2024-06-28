@@ -12,14 +12,20 @@ export default function Home() {
         <title>Gestantes</title>
         <meta name="description" content="Pagina de cadastro de gestantes" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <div className={`${styles.body}`}>
 
         <Header />
+
         <main className={styles.main}>
-          <Formulario />
+
+          <section className={`${styles.container} limit`}>
+            <Formulario />
+          </section>
+          
         </main>
+        
         <Footer />
 
       </div>

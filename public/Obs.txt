@@ -30,3 +30,25 @@ Componentes
       - Alterados: 
         - Header: Adicionado 'links' para navegação entre as paginas da aplicação (Link Cadastro, Link Listas)
 ----------------------------------------------------------------------------------------------------------------
+
+Commit 154c247b32162ca1da130cc5095f7b865cba50cd
+
+Get do Banco de Dados;
+    - Criados (Componentes que agem de forma 'assincrona'):
+        - getSheetData: Componente que acessa o BD e resgata os dados armazenados (Usa lógica de requisição HTTP)
+        - ShowSheetData: Componente que vai mostrar os registros do BD no Navegador (Ele vai encapsular o registro dentro do componente 'Registro')
+    
+Componentes JSX:
+    - Criados: 
+        - Botão: Agora é um componente pronto, sempre importado quando necessário.
+        - Filtros: Importado para dentro do Header; Visível apenas na página de 'Listas' da aplicação; Importa o componente 'Botão' ; Tem a finalidade de filtrar os registros mostrados na página de acordo com o click em cada botão.
+
+    - Alterados:
+        - Header: Usando a lógica de 'props' pode importar (ou não) um outro componente via 'props.children'
+        - Registro: Recebe o conteúdo bruto do registro do bd (Falta contruir lógica)
+
+Estilização:
+    - Criados: Botao; Filtros; ShowSheetData ;
+    - Alterados:
+        - Formulario: Estilização do componente Botão transferida para o css correspondente
+

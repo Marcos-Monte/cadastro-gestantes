@@ -5,13 +5,13 @@
     padding: .7rem;
     border-radius: 10px;
     border: none;
-    background-image: linear-gradient(160deg, var(--secondary-lightiest) 31%, var(--primary) 95%);
+    background-image: linear-gradient(160deg, var(--secondary-lightiest) 31%, var(--secondary) 95%);
     color: var(--dark-font);
     font-weight: bold;
 }
 
 /* Hover */
 .botaoSubmit:hover{
-    background-image: linear-gradient(160deg, var(--primary) 31%, var(--secondary-lightiest) 95%);
+    background-image: linear-gradient(160deg, var(--secondary) 31%, var(--secondary-lightiest) 95%);
     color: var(--light-font);
 }

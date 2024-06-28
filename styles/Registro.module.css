@@ -1,5 +1,5 @@
 .registro{
-    width: 250px;
+    width: 100%;
     height: auto;
     border: solid 1px var(--shadow);
     border-radius: 10px;
@@ -11,6 +11,10 @@
     gap: 1rem;
     background-color: var(--secondary);
     color: var(--light-font);
+}
+
+.nome, .endereco, .equipe{
+    text-transform: capitalize;
 }
 
 /* Hover */

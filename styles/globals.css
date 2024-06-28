@@ -27,14 +27,13 @@ html{
   /* Global Test */
   --primary: #BF526F;
   --primary-lightiest: #E4859D;
-  --secondary: #9E9404;
-  --secondary-lightiest: #F0E319;
+  --secondary: #362971;
+  --secondary-lightiest: #1fb5b4;
   /* --prom: #7D8CC4; */
-    --prom: #00175b;
+    /* --prom: #eec013; */
   /* Datails */
   --light-font: #fff;
   --dark-font: #000;
-  --prom-font: #7a7a7a;
   --hover: #ece5e5;
   --shadow: #7a7a7a;
 }
