@@ -13,6 +13,10 @@
     text-align: center;
     padding: 1rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem .2rem;
 }
 
 .ancora{
@@ -22,5 +26,12 @@
 /* Hover */
 .ancora:hover{
     color: var(--secondary)
+}
+
+/* Media */
+@media screen and (max-width: 360px){
+    .assinatura{
+        flex-wrap: wrap;
+    }
 }
 

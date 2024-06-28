@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
         <meta charSet="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Pagina de Cadastro de Gestantes" />
-        {/* <link rel="icon" href="/ico.webp" />   */}
+        <link rel="icon" href="/balloon-heart.svg" />  
       </Head>
       <Component {...pageProps} />
       <ToastContainer style={{ zIndex: 9999 }} />

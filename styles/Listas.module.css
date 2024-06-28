@@ -8,9 +8,46 @@
 }
 
 .container{
-    margin: 5.5rem;
+    margin: 3.2rem;
     width: 100%;
-    min-height: 500px;
+    min-height: 600px;
     background-color: var(--hover);
     border-radius: 1rem;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
+
+.quantidade{
+    padding-top: 2rem;
+    color: var(--secondary);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+.listas{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: bold;
+}
+
+.containerFiltros{
+    background-color: var(--primary-lightiest);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.filtros{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem 0;
 }

@@ -1,7 +1,3 @@
-// const bd = 'https://sheetdb.io/api/v1/pexqrnjxmcmxj'
-
-// pages/api/getSheetData.js
-
 export default async function handler(req, res) {
 
     const SHEETDB_API_URL = 'https://sheetdb.io/api/v1/pexqrnjxmcmxj'; // Substitua pelo seu ID do SheetDB

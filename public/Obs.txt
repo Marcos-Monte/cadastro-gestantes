@@ -52,3 +52,20 @@ Estilização:
     - Alterados:
         - Formulario: Estilização do componente Botão transferida para o css correspondente
 
+------------------------------------------------------------------------------------
+Commit 1555c505cfbc153eb448e4d581e2858695c19b8c
+
+Formulario
+    - Equipe Responsavel: Adicionado o dado 'obrigatório' e já vinculado ao BD.
+    - Todas os dados são obrigatórios
+
+Registro
+    - Configurado para receber item a item do registro
+
+ShowSheetData
+    - Retirado o comando 'JSON.stringify' que transforma o dado em 'string'
+    - Agora garantindo que suma as "aspas duplas" que ficaram em cada dado.
+
+Estilização
+    - Paleta de cores alterada
+        
