@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--light-font)
+    color: var(--light-font);
 }
 
 .assinatura{

@@ -1,15 +1,11 @@
-Criação e estruturação do Projeto
-    - Estilos: Sempre na pasta de 'styles' (usando 'modules.css')
-    - Componentes: Sempre na pasta de 'componentes'
-    - Scripts: Alocados na pasta 'api' (à princípio)
-
-Bibliotecas
-    - react-toastify: Para criação e estilização de 'popups' (Instalada via NPM)
-    - bootstrap: CSS, ícones, etc (Importada via CDN)
-
-Formulario
-    - WEB API: Vinculado via 'action' a 'sheetdb' na conta 'marcosvalongos2' (duas planilhas por conta)
-    - Script: Envio de dados via 'submit' para planilha. (HTTP POST)
-
 Estilização:
-    - Paleta de Cores: Já definida e atribuida via 'root' (Usar por meio de Variavel var(--estilo))
+    - Excluindo ícones 'public'
+
+Erro no Navegador: Corrigido
+      - Pagina da aplicação '_next', estava com espaço maior na parte debaixo da tela
+      - Gerado por um erro de digitação no componente '_app.jsx'
+
+Componentes
+      - Criado: Registro.jsx, listas.jsx
+      - Alterados: 
+        - Header: Adicionado 'links' para navegação entre as paginas da aplicação (Link Cadastro, Link Listas)

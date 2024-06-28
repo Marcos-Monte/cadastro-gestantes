@@ -1,0 +1,21 @@
+.registro{
+    width: 300px;
+    /* height: 300px; */
+    border: solid 1px var(--shadow);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+    background-color: var(--secondary);
+    color: var(--light-font);
+}
+
+/* Hover */
+.registro:hover{
+    background-color: var(--secondary-lightiest);
+    color: var(--dark-font)
+}
+

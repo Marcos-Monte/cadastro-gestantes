@@ -1,16 +1,33 @@
 .header{
     width: 100%;
     background-color: var(--primary);
-    position: fixed;
+    /* position: fixed; */
 }
 
 .container{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding: 1em
 }
 
 .logo{
     font-size: 36px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem
+}
+
+.link{
+    color: var(--light-font);
+    font-weight: bold;
+}
+
+/* Hover */
+.link:hover{
+    color: var(--secondary-lightiest)
 }
