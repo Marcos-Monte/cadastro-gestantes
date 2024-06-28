@@ -7,7 +7,7 @@ export default function mostrarGestantes(listaGestantes, erro){
     console.log('listaGestantes:', listaGestantes);
 
     if(!Array.isArray(listaGestantes)){
-        return <p>Dados inválidos: Não é um array</p>
+        return <p>Dados inválidos: Não é uma lista</p>
     }
 
     return (listaGestantes.length > 0 ?
