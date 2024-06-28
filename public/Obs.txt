@@ -16,7 +16,7 @@ Commit be41c729eaf3582d1d9d681eeb4b3745c0e63851
     Estilização:
         - Paleta de Cores: Já definida e atribuida via 'root' (Usar por meio de Variavel var(--estilo))
 ---------------------------------------------------------------------------------------------------------------
-Commit 
+Commit 8628d83f3ae5fd45c1f506428a1b91f73e4b9cc9
 
 Estilização:
     - Excluindo ícones 'public'

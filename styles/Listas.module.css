@@ -1,8 +1,12 @@
 .main{
     display: flex;
-    justify-content: center;
+    /* justify-content: space-between; */
     align-items: center;
     flex-direction: column;
     width: 100%;
-    /* height: auto; */
+    height: 100vh;
+}
+
+.container{
+    width: 100%;
 }

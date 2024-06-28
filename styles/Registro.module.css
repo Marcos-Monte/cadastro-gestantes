@@ -1,6 +1,6 @@
 .registro{
-    width: 300px;
-    /* height: 300px; */
+    width: 250px;
+    height: auto;
     border: solid 1px var(--shadow);
     border-radius: 10px;
     padding: 10px;

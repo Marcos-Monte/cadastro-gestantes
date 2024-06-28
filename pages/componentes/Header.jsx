@@ -1,7 +1,7 @@
 import styles from '@/styles/Header.module.css';
 import Link from 'next/link';
 
-export default function Header(){
+export default function Header(props){
     return(
         <header className={styles.header}>
 
@@ -13,7 +13,10 @@ export default function Header(){
                     <Link className={styles.link} href='/'>Cadastro</Link>
                     <Link className={styles.link} href='/listas'>Listas</Link>
                 </nav>
+                
             </div>
+            
+            {props.children}
 
         </header>
     )

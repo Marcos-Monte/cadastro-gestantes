@@ -1,6 +1,7 @@
 import styles from '@/styles/Formulario.module.css'
 
-import handleSubmit from '../api/script.js'
+import handleSubmit from '../api/submit.js'
+import Botao from './BotaoSubmit.jsx'
 
 export default function Formulario(){
     return(
@@ -34,7 +35,7 @@ export default function Formulario(){
 
             </fieldset>
 
-            <button className={styles.botaoSubmit} type="submit">Cadastrar</button>
+            <Botao estilo='botaoSubmit' tipo='submit' nome='Cadastrar'/>
 
         </form>
     )
