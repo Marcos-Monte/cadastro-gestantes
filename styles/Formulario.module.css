@@ -1,0 +1,62 @@
+.formulario{
+    width: 400px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.tituloFormulario{
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.camposFormulario{
+    padding: .2rem;
+    border: none
+}
+
+.tituloCampos{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem .3rem
+}
+
+.input{
+    border-radius: 10px;
+    padding: .2rem;
+    width: 200px;
+}
+
+.botaoSubmit{
+    width: 150px;
+    margin: 0 auto;
+    background-color: transparent;
+    padding: .7rem;
+    border-radius: 10px;
+    border: none;
+    background-image: linear-gradient(160deg, var(--secondary-lightiest) 31%, var(--primary) 95%);
+    color: var(--dark-font);
+    font-weight: bold;
+}
+
+/* Hover */
+.botaoSubmit:hover{
+    background-image: linear-gradient(160deg, var(--primary) 31%, var(--secondary-lightiest) 95%);
+    color: var(--light-font);
+}
+
+.input:hover{
+    background-color: var(--hover);
+}
