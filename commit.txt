@@ -1,14 +1,1 @@
-Componentes
-    - ShowSheetData: Lógica absorvida pelo componente 'Listas' para melhor legibilidade
-    - Filtros: Lógica absorvida pelo componente 'Listas'.
-        - Motivo: Logica de filtragem, via botões, ficava distante demais do componente 'Listas'. Complicava demais o processo de componetização das funções.
-    - Listas: Cresceu consideravelmente de tamanho; Faz o gerenciamento das listras / registros que aparecem na tela ; Mostra contagem de quantos registros tem na lista com base nos filtros
-
-Lógica:
-    - Services: Pasta que tem componente de 'mostrarGestantes'
-    - importa o componente 'Registro'; Recebe a 'lista de dados' e percorre ela colocando cada 'informação' dentro de um componente registro; Caso não tenham registros ela informa uma mensagem de erro
-
-
-Resolução: Agora a aplicação faz: 
-    - Create: Cria novo registro e adiciona no banco de dados via aplicação
-    - Read: Lê todos os registros do banco de dados e adiciona filtros de visualização
+feat: Mascara nos inputs de telefone e nome. Garantindo que a quantidade certa de valores seja incluída no telefone e que não tenham caracteres errados em nenhum dos dois
