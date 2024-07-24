@@ -1,7 +1,7 @@
 import styles from "@/styles/Formulario.module.css";
 
 import { useState } from "react";
-import handleSubmit from "../api/submit.js";
+import handleSubmit from "../api/post.jsx";
 import Botao from "./BotaoSubmit.jsx";
 
 export default function Formulario() {
@@ -35,7 +35,7 @@ export default function Formulario() {
     <form
       className={styles.formulario}
       action="https://sheetdb.io/api/v1/pexqrnjxmcmxj"
-      methor="post"
+      method="post"
       id="formulario"
       onSubmit={handleSubmit}
     >

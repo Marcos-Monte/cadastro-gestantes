@@ -1,65 +1,6 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-import { toast } from 'react-toastify';
+import { notifyError, notifySuccess } from "./notifys";
 
 const submitFormulario = 'https://sheetdb.io/api/v1/pexqrnjxmcmxj';
-
-const notifySuccess = (message) => {
-  toast.success(message, {
-    position: "top-right",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
-};
-
-const notifyError = (message) => {
-  toast.error(message, {
-    position: "top-right",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
-};
-
-// export default async function handleSubmit(req, res) {
-//   if (req.method === 'POST') {
-//     const formData = req.body;
-
-//     try {
-//       const response = await fetch(req.url, {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(formData),
-//       });
-
-//       if (response.ok) {
-//         await response.json();
-//         notifySuccess('Dados enviados com sucesso!');
-//         res.status(200).json({ message: 'Dados enviados com sucesso!' });
-//       } else {
-//         throw new Error('Erro ao enviar dados');
-//       }
-//     } catch (error) {
-//       notifyError(`Erro: ${error.message}`);
-//       res.status(500).json({ message: `Erro: ${error.message}` });
-//     }
-//   } else {
-//     res.status(405).json({ message: 'Método não permitido' });
-//   }
-// }
-
-
-
-
 
 export default async function  handleSubmit  (event) {
   // Evita o comportamento padrão do formulário, que é recarregar a página

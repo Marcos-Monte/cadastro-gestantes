@@ -1,1 +1,3 @@
-feat: Mascara nos inputs de telefone e nome. Garantindo que a quantidade certa de valores seja incluída no telefone e que não tenham caracteres errados em nenhum dos dois
+fix: Reorganização dos arquivos. Todos os arquivos são '.jsx'
+
+chore: Adicionando a dependencia 'axios' 

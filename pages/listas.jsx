@@ -7,7 +7,7 @@ import Header from "./componentes/Header";
 
 import { useEffect, useState } from 'react';
 
-import mostrarGestante from '@/pages/services/index.js';
+import mostrarGestante from '@/pages/services/index.jsx';
 
 
 export default function Listas() {
