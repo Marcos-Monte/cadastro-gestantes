@@ -1,1 +1,1 @@
-fix: adicionada lógica em caso de erro para o método 'GET' no cmponente 'listas.jsx'
+fix: Erro de não armazenamento na requisição POST. Garantindo que o objeto seja JSON a ser enviado.

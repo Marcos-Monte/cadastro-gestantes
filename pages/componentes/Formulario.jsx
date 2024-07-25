@@ -1,12 +1,17 @@
+// Biblioteca para fazer requisições HTTP
 import axios from "axios";
+// Biblioteca para gerenciar estado dos componentes
 import { useState } from "react";
-
+// Estilos CSS
 import styles from "@/styles/Formulario.module.css";
-
+//Notificações (toast)
 import { notifyError, notifySuccess } from "../api/notifys.jsx";
+// Componente Botão
 import Botao from "./BotaoSubmit.jsx";
 
+// Configurando uma 'instancia' de axios
 const server = axios.create({
+  // URL do servidor (Backend)
   baseURL: 'http://localhost:3000'
 })
 
@@ -17,32 +22,39 @@ export default function Formulario() {
   const [endereco, setEndereco] = useState('');
   const [equipe, setEquipe] = useState('');
 
-  async function addUser(event){
-
-    event.preventDefault();
-
-    // Cria um objeto FormData
-    const formData = new FormData();
-    formData.append('nome', nome);
-    formData.append('data', data);
-    formData.append('telefone', telefone);
-    formData.append('endereco', endereco);
-    formData.append('equipe', equipe);
-
-    try {
-
-      await server.post('api/api');
-
-      notifySuccess('Registro feito com sucesso')
-
-    } catch(error){
-      
-      notifyError(error)
-
-    }
-
+ async function addUser(event){
+  // Previne o comportamento Padrão. Impede que o formulário seja enviado de forma tradicional
+  event.preventDefault();
+  // Cria o objeto Json
+  const registro = {
+    nome: nome,
+    data: data,
+    endereco: endereco,
+    telefone: telefone,
+    equipe: equipe
   }
 
+  // Envia requisição 'POST' para a URL 'api/api' com os dados do formulário
+  server.post('api/api', registro, {
+    // Cabeçalho que indica que os dados estão em formato JSON
+    headers: {
+      'Content-Type' : 'application/json'
+    }
+    // Promessa se a requisição for bem sucecida
+  }).then(() => {
+
+    notifySuccess('Registro feito com sucesso')
+
+    // Caso a requisição não for bem sucedida
+  }).catch((error) => {
+
+    notifyError(error)
+
+  })
+
+ }
+
+ // Filtra a entrada e permite apenas letras e espaços. Atualiza o estado 'nome'
   const handleNomeChange = (e) => {
     const value = e.target.value;
     // console.log("Input Value: ", value); // Verificar o valor do input
@@ -51,6 +63,7 @@ export default function Formulario() {
     // console.log("Nome State: ", name); // Verificar o estado
   };
 
+  // Remove catacteres não numéricos e formata o valor de entrada
   const handleWhatsChange = (e) => {
     const value = e.target.value;
     // Remover todos os caracteres não numéricos
