@@ -1,1 +1,1 @@
-fix: Api local. Retirada a conexão com WebAPI Sheetdb
+fix: adicionada lógica em caso de erro para o método 'GET' no cmponente 'listas.jsx'

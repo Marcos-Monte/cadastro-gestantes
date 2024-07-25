@@ -103,8 +103,7 @@ export default function Formulario() {
             className={styles.input}
             type="date"
             id="id-dn"
-            name="data[dn]"
-            // value={data}
+            // name="data[dn]"
             required
           />
         </div>

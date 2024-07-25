@@ -24,10 +24,14 @@ export default function Listas() {
     // useEffect, garante que a requisição seja feita apenas uma vez ao iniciar a pagina
     useEffect(() => {
 
-        server.get('api/api').then((resposta) => {
-            setDados(resposta.data);
-            setDadosFiltrados(resposta.data);
-        })
+        server.get('api/api')
+            .then((resposta) => {
+                setDados(resposta.data);
+                setDadosFiltrados(resposta.data);
+            })
+            .catch((erro) => {
+                setErro(erro.message || 'Erro ao carregar dados')
+            })
 
     }, [] // Array vazio garante que o useEffect rode apenas uma vez
 );
