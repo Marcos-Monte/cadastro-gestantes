@@ -3,8 +3,8 @@ import Registro from "../componentes/Registro";
 
 export default function mostrarGestantes(listaGestantes, erro){
 
-    console.log('Tipo de listaGestantes:', typeof listaGestantes);
-    console.log('listaGestantes:', listaGestantes);
+    // console.log('Tipo de listaGestantes:', typeof listaGestantes);
+    // console.log('listaGestantes:', listaGestantes);
 
     if(!Array.isArray(listaGestantes)){
         return <p>Dados inválidos: Não é uma lista</p>

@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 import styles from "@/styles/Listas.module.css";
 import Head from "next/head";
 
@@ -5,52 +8,49 @@ import Botao from "./componentes/BotaoSubmit";
 import Footer from "./componentes/Footer";
 import Header from "./componentes/Header";
 
-import { useEffect, useState } from 'react';
-
 import mostrarGestante from '@/pages/services/index.jsx';
+
+const server = axios.create({
+    baseURL: 'http://localhost:3000'
+})
 
 
 export default function Listas() {
 
-    const [data, setData] = useState([]);
-    const [dataFiltrada, setDataFiltrada] = useState([])
-    const [error, setError] = useState(null);
+    const [dados, setDados] = useState([]); // Estado para armazenar todos os dados
+    const [dadosFiltrados, setDadosFiltrados] = useState([]); // Estado para armazenar os dados filtrados
+    const [erro, setErro] = useState(null); // Estado para armazenar erros
 
+    // useEffect, garante que a requisição seja feita apenas uma vez ao iniciar a pagina
     useEffect(() => {
 
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/getSheetData');
-                
-                if (!response.ok) {
-                throw new Error('Failed to fetch data');
-                }
+        server.get('api/api').then((resposta) => {
+            setDados(resposta.data);
+            setDadosFiltrados(resposta.data);
+        })
 
-                const result = await response.json();
-                
-                setData(result);
-                setDataFiltrada(result); // Inicialmente, mostramos todos os dados
+    }, [] // Array vazio garante que o useEffect rode apenas uma vez
+);
 
-            } catch (error) {
-                setError(error.message);
-            }
-        };
-
-        fetchData();
-
-    }, []);
-
-    if (error) return <div>Error: {error}</div>;
+    if (erro) return <div>Error: {erro}</div>;
 
     function handleFiltro(equipe){
-        const filtrados = data.filter(
-            (gestante) => gestante.equipe.toLowerCase() === equipe.toLowerCase()
-        );
-        setDataFiltrada(filtrados)
+        if(dados.length > 0){
+            const filtrados = dados.filter(
+                (gestante) => gestante.equipe.toLowerCase() === equipe.toLowerCase()
+            )
+            
+            setDadosFiltrados(filtrados)
+            
+        } else {
+            setDadosFiltrados(dados)
+            
+        }
+        
     }
 
     function handleSemFiltro(){
-        setDataFiltrada(data)
+        setDadosFiltrados(dados)
     }
 
     return (
@@ -100,13 +100,13 @@ export default function Listas() {
                     <section className={`${styles.container} limit`}>
 
                         <span className={styles.quantidade}>
-                            Quantidade : {dataFiltrada.length}
+                            Quantidade : {dadosFiltrados.length}
                         </span>
                     
                         <div className={styles.listas}>
 
                                 {
-                                    mostrarGestante(dataFiltrada, 'Nenhuma Gestante Cadastrada')
+                                    mostrarGestante(dadosFiltrados, 'Nenhuma Gestante Cadastrada')
                                     
                                 }
 

@@ -1,3 +1,1 @@
-fix: Reorganização dos arquivos. Todos os arquivos são '.jsx'
-
-chore: Adicionando a dependencia 'axios' 
+fix: Api local. Retirada a conexão com WebAPI Sheetdb

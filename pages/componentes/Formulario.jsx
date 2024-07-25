@@ -1,12 +1,47 @@
+import axios from "axios";
+import { useState } from "react";
+
 import styles from "@/styles/Formulario.module.css";
 
-import { useState } from "react";
-import handleSubmit from "../api/post.jsx";
+import { notifyError, notifySuccess } from "../api/notifys.jsx";
 import Botao from "./BotaoSubmit.jsx";
+
+const server = axios.create({
+  baseURL: 'http://localhost:3000'
+})
 
 export default function Formulario() {
   const [telefone, setTelefone] = useState("");
   const [nome, setNome] = useState("");
+  const [data, setData] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [equipe, setEquipe] = useState('');
+
+  async function addUser(event){
+
+    event.preventDefault();
+
+    // Cria um objeto FormData
+    const formData = new FormData();
+    formData.append('nome', nome);
+    formData.append('data', data);
+    formData.append('telefone', telefone);
+    formData.append('endereco', endereco);
+    formData.append('equipe', equipe);
+
+    try {
+
+      await server.post('api/api');
+
+      notifySuccess('Registro feito com sucesso')
+
+    } catch(error){
+      
+      notifyError(error)
+
+    }
+
+  }
 
   const handleNomeChange = (e) => {
     const value = e.target.value;
@@ -31,13 +66,13 @@ export default function Formulario() {
     }
     // Se tiver mais de 11 dígitos, não atualiza o estado (ignora entrada adicional)
   };
+
   return (
     <form
       className={styles.formulario}
-      action="https://sheetdb.io/api/v1/pexqrnjxmcmxj"
       method="post"
       id="formulario"
-      onSubmit={handleSubmit}
+      onSubmit={addUser}
     >
       <legend className={styles.tituloFormulario}>Cadastro de Gestante</legend>
 
@@ -69,6 +104,7 @@ export default function Formulario() {
             type="date"
             id="id-dn"
             name="data[dn]"
+            // value={data}
             required
           />
         </div>
@@ -82,6 +118,7 @@ export default function Formulario() {
             type="text"
             id="id-endereco"
             name="data[endereco]"
+            // value={endereco}
             placeholder="Endereço Completo"
             required
           />
@@ -112,6 +149,7 @@ export default function Formulario() {
             className={styles.input}
             name="data[equipe]"
             id="id-equipe"
+            onChange={(event) => setEquipe(event.target.value)}
             required
           >
             <option className={styles.opcao} value="">
@@ -130,7 +168,7 @@ export default function Formulario() {
         </div>
       </fieldset>
 
-      <Botao estilo="botaoSubmit" tipo="submit" nome="Cadastrar" />
+      <Botao estilo="botaoSubmit" tipo="submit" nome="Cadastrar"/>
     </form>
   );
 }
