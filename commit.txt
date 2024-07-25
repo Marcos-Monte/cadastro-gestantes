@@ -1,1 +1,3 @@
-fix: Erro de não armazenamento na requisição POST. Garantindo que o objeto seja JSON a ser enviado.
+chore: adicionada a dependencia 'prisma' para conectar o BD 'MongoDB' com a aplicação. Iniciada a configuração do projeto PRISMA ORM e criando o arquivos '.env' e Prisma Schema
+
+chore: adicionada a dependencia do 'prisma/cliente' para consulta de dados no BD via navegador, usando o comando 'npx prisma studio'
