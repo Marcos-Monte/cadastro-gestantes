@@ -14,11 +14,11 @@ datasource db {
 }
 
 model Cadastro {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId // ID unico criado automaticamente
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
   nome     String
   data     DateTime
-  equipe   String   @unique
+  equipe   String
   endereco String
-          telefone Int
+  telefone String
 }
 

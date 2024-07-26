@@ -1,3 +1,13 @@
-chore: adicionada a dependencia 'prisma' para conectar o BD 'MongoDB' com a aplicação. Iniciada a configuração do projeto PRISMA ORM e criando o arquivos '.env' e Prisma Schema
+feat: import do módulo 'PrismaClient' no componente api.jsx.
 
-chore: adicionada a dependencia do 'prisma/cliente' para consulta de dados no BD via navegador, usando o comando 'npx prisma studio'
+feat: após o envio dos dados para o Banco de Dados, os estados do 'useState' são zerados
+
+fix: componente 'handler' do arquivo 'api,jsx' é responsavel pela comunicação da aplicação com o MongoDB via a biblioteca 'Prisma'. Duas rotas foram reorganizadas (GET e POST)
+
+fix: função 'handler' é assincrona e chama partes diferentes de acordo com as rotas 'GET' e 'POST'
+
+fix: data tem um limite para ser adicionado pelo usuário
+
+
+
+

@@ -12,7 +12,7 @@ import Botao from "./BotaoSubmit.jsx";
 // Configurando uma 'instancia' de axios
 const server = axios.create({
   // URL do servidor (Backend)
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://localhost:3000/api'
 })
 
 export default function Formulario() {
@@ -22,37 +22,45 @@ export default function Formulario() {
   const [endereco, setEndereco] = useState('');
   const [equipe, setEquipe] = useState('');
 
- async function addUser(event){
+  async function addUser(event){
   // Previne o comportamento Padrão. Impede que o formulário seja enviado de forma tradicional
   event.preventDefault();
+
   // Cria o objeto Json
   const registro = {
     nome: nome,
-    data: data,
+    data: new Date(data), // Exemplo de como enviar a data no formato ISO
     endereco: endereco,
     telefone: telefone,
     equipe: equipe
   }
+  
 
-  // Envia requisição 'POST' para a URL 'api/api' com os dados do formulário
-  server.post('api/api', registro, {
-    // Cabeçalho que indica que os dados estão em formato JSON
-    headers: {
-      'Content-Type' : 'application/json'
-    }
-    // Promessa se a requisição for bem sucecida
-  }).then(() => {
+  try{
+    // Envia requisição 'POST' para a URL 'api/api' com os dados do formulário
+    await server.post('/api', registro, {
+      // Cabeçalho que indica que os dados estão em formato JSON
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+    }); 
+   // Promessa se a requisição for bem sucecida
+    notifySuccess('Registrado com Sucesso');
+    // Resetando os campos do formulário
+    setNome("");
+    setData("");
+    setEndereco("");
+    setTelefone("");
+    setEquipe("");
 
-    notifySuccess('Registro feito com sucesso')
+  } catch(error) {
+    // Promessa se a requisição não sucedida
+    console.error('Erro ao enviar dados:', error.response ? error.response.data : error.message);
+    notifyError(error.response ? error.response.data.error : 'Erro ao enviar dados');
+    notifyError(error.message || 'Erro ao enviar dados')
 
-    // Caso a requisição não for bem sucedida
-  }).catch((error) => {
-
-    notifyError(error)
-
-  })
-
- }
+  }
+}
 
  // Filtra a entrada e permite apenas letras e espaços. Atualiza o estado 'nome'
   const handleNomeChange = (e) => {
@@ -116,7 +124,9 @@ export default function Formulario() {
             className={styles.input}
             type="date"
             id="id-dn"
-            // name="data[dn]"
+            max={`3024-12-31`}
+            value={data}
+            onChange={(e) => setData(e.target.value)}
             required
           />
         </div>
@@ -130,7 +140,8 @@ export default function Formulario() {
             type="text"
             id="id-endereco"
             name="data[endereco]"
-            // value={endereco}
+            onChange={(e) => setEndereco(e.target.value)}
+            value={endereco}
             placeholder="Endereço Completo"
             required
           />
@@ -147,6 +158,7 @@ export default function Formulario() {
             name="data[telefone]"
             onChange={handleWhatsChange}
             value={telefone}
+            minLength={11}
             maxLength={11}
             placeholder="(XX) XXXXX-XXXX"
             required
@@ -161,6 +173,7 @@ export default function Formulario() {
             className={styles.input}
             name="data[equipe]"
             id="id-equipe"
+            value={equipe}
             onChange={(event) => setEquipe(event.target.value)}
             required
           >
