@@ -8,6 +8,7 @@ export default async function handler(req, res){
         try {
 
             const gestantes = await prisma.cadastro.findMany();
+            
             res.status(200).json(gestantes);
 
         } catch(error) {
@@ -24,7 +25,7 @@ export default async function handler(req, res){
             const novaGestante = await prisma.cadastro.create({
                 data: {
                     nome: novoRegistro.nome,
-                    data: novoRegistro.data,
+                    data: new Date(novoRegistro.data),
                     endereco: novoRegistro.endereco,
                     telefone: novoRegistro.telefone, 
                     equipe: novoRegistro.equipe

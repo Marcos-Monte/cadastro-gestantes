@@ -1,29 +1,36 @@
+// Importando conteúdo das dependencias
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+// Importando arquivo de estilização
 import styles from "@/styles/Listas.module.css";
-import Head from "next/head";
 
+//Importando componentes 
+import Head from "next/head";
 import Botao from "./componentes/BotaoSubmit";
 import Footer from "./componentes/Footer";
 import Header from "./componentes/Header";
 
-import mostrarGestante from '@/pages/services/index.jsx';
+// Importando funções da camada de serviços
+import mostrarGestante, { handleFiltro, handleSemFiltro } from '@/pages/services/service.jsx';
 
+// Configuranco uma Instancia de Axios. Para fazer requisições HTTP
 const server = axios.create({
     baseURL: 'http://localhost:3000'
 })
 
-
+// Componente Principal
 export default function Listas() {
 
     const [dados, setDados] = useState([]); // Estado para armazenar todos os dados
     const [dadosFiltrados, setDadosFiltrados] = useState([]); // Estado para armazenar os dados filtrados
     const [erro, setErro] = useState(null); // Estado para armazenar erros
 
-    // useEffect, garante que a requisição seja feita apenas uma vez ao iniciar a pagina
-    useEffect(() => {
+    // Função que faz a requisição HTTP GET e mostrando os dados
+    function buscarDados(){
 
+        // Requisição 'GET' usando 'server' (objeto instanciado)
+        // Pega os dados da resposta e armazena nas variáveis de estado
         server.get('api/api')
             .then((resposta) => {
                 setDados(resposta.data);
@@ -32,30 +39,18 @@ export default function Listas() {
             .catch((erro) => {
                 setErro(erro.message || 'Erro ao carregar dados')
             })
+    }
+
+    // useEffect, garante que a requisição seja feita apenas uma vez ao iniciar a pagina
+    useEffect(() => {
+
+        buscarDados()
 
     }, [] // Array vazio garante que o useEffect rode apenas uma vez
 );
 
     if (erro) return <div>Error: {erro}</div>;
 
-    function handleFiltro(equipe){
-        if(dados.length > 0){
-            const filtrados = dados.filter(
-                (gestante) => gestante.equipe.toLowerCase() === equipe.toLowerCase()
-            )
-            
-            setDadosFiltrados(filtrados)
-            
-        } else {
-            setDadosFiltrados(dados)
-            
-        }
-        
-    }
-
-    function handleSemFiltro(){
-        setDadosFiltrados(dados)
-    }
 
     return (
         <>
@@ -76,22 +71,22 @@ export default function Listas() {
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Todas' 
-                                    funcao={handleSemFiltro} 
+                                    funcao= {() => setDadosFiltrados(handleSemFiltro(dados))} 
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Azul' 
-                                    funcao={() => handleFiltro('azul')} 
+                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'azul'))} 
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Verde' 
-                                    funcao={() => handleFiltro('verde')} 
+                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'verde'))} 
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Amarelo' 
-                                    funcao={() => handleFiltro('amarela')} 
+                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'amarela'))} 
                                 />
                                 
                             </nav>

@@ -1,12 +1,12 @@
-feat: import do módulo 'PrismaClient' no componente api.jsx.
+fix: Data não estava aparecendo na tela de listas de consulta. Ajustado no componente Registro para que receba o valor de 'data' (anteriormente estava como dn). 
 
-feat: após o envio dos dados para o Banco de Dados, os estados do 'useState' são zerados
+fix: Adicionando comentarios no componente 'listas.jsx'
 
-fix: componente 'handler' do arquivo 'api,jsx' é responsavel pela comunicação da aplicação com o MongoDB via a biblioteca 'Prisma'. Duas rotas foram reorganizadas (GET e POST)
+fix: no componente 'api.jsx' estava ocorrendo um erro onde o dado de 'data' não estava sendo transformado em um objeto 'Date()'. Concertado
 
-fix: função 'handler' é assincrona e chama partes diferentes de acordo com as rotas 'GET' e 'POST'
+fix: funções de filtragem migradas para camada de serviço e são apenas importadas para o componente 'listas' afim de filtrar baseado no seu usuário
 
-fix: data tem um limite para ser adicionado pelo usuário
+fix: ajuste direto no 'MongoDB'. Onde o parametro 'equipe' estava configurado como valor unico.
 
 
 
