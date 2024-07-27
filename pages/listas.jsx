@@ -30,7 +30,7 @@ export default function Listas() {
     function buscarDados(){
 
         // Requisição 'GET' usando 'server' (http://localhost:3000/ + api/api)
-        server.get('/api')
+        server.get('/')
             .then((resposta) => {
                 setDados(resposta.data); // Dados armazenados na variável de estado
                 setDadosFiltrados(resposta.data); // Dados armazenados na variável de estado
