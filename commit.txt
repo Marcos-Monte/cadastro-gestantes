@@ -1,1 +1,5 @@
-feat: Mascara nos inputs de telefone e nome. Garantindo que a quantidade certa de valores seja incluída no telefone e que não tenham caracteres errados em nenhum dos dois
+fix: Adicionando comentários nos componentes (listas e Formulário)
+
+
+
+

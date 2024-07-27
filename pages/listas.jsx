@@ -1,57 +1,55 @@
-import styles from "@/styles/Listas.module.css";
-import Head from "next/head";
+// Importando conteúdo das dependencias
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
+// Importando arquivo de estilização
+import styles from "@/styles/Listas.module.css";
+
+//Importando componentes 
+import Head from "next/head";
 import Botao from "./componentes/BotaoSubmit";
 import Footer from "./componentes/Footer";
 import Header from "./componentes/Header";
 
-import { useEffect, useState } from 'react';
+// Importando funções da camada de serviços
+import mostrarGestante, { handleFiltro, handleSemFiltro } from '@/pages/services/service.jsx';
 
-import mostrarGestante from '@/pages/services/index.js';
+// Configuranco uma Instancia de Axios. Para fazer requisições HTTP
+const server = axios.create({
+    baseURL: 'http://localhost:3000'
+})
 
-
+// Componente Principal
 export default function Listas() {
 
-    const [data, setData] = useState([]);
-    const [dataFiltrada, setDataFiltrada] = useState([])
-    const [error, setError] = useState(null);
+    const [dados, setDados] = useState([]); // Estado para armazenar todos os dados
+    const [dadosFiltrados, setDadosFiltrados] = useState([]); // Estado para armazenar os dados filtrados
+    const [erro, setErro] = useState(null); // Estado para armazenar erros
 
+    // Função que faz a requisição HTTP GET e mostrando os dados
+    function buscarDados(){
+
+        // Requisição 'GET' usando 'server' (http://localhost:3000/ + api/api)
+        server.get('api/api')
+            .then((resposta) => {
+                setDados(resposta.data); // Dados armazenados na variável de estado
+                setDadosFiltrados(resposta.data); // Dados armazenados na variável de estado
+            })
+            .catch((erro) => {
+                setErro(erro.message || 'Erro ao carregar dados') // Dados armazenados na variável de estado
+            })
+    }
+
+    // useEffect, garante que a requisição seja feita apenas uma vez ao iniciar a pagina
     useEffect(() => {
 
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/getSheetData');
-                
-                if (!response.ok) {
-                throw new Error('Failed to fetch data');
-                }
+        buscarDados()
 
-                const result = await response.json();
-                
-                setData(result);
-                setDataFiltrada(result); // Inicialmente, mostramos todos os dados
+    }, [] // Array vazio garante que o useEffect rode apenas uma vez
+);
 
-            } catch (error) {
-                setError(error.message);
-            }
-        };
+    if (erro) return <div>Error: {erro}</div>;
 
-        fetchData();
-
-    }, []);
-
-    if (error) return <div>Error: {error}</div>;
-
-    function handleFiltro(equipe){
-        const filtrados = data.filter(
-            (gestante) => gestante.equipe.toLowerCase() === equipe.toLowerCase()
-        );
-        setDataFiltrada(filtrados)
-    }
-
-    function handleSemFiltro(){
-        setDataFiltrada(data)
-    }
 
     return (
         <>
@@ -72,22 +70,22 @@ export default function Listas() {
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Todas' 
-                                    funcao={handleSemFiltro} 
+                                    funcao= {() => setDadosFiltrados(handleSemFiltro(dados))} 
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Azul' 
-                                    funcao={() => handleFiltro('azul')} 
+                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'azul'))} 
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Verde' 
-                                    funcao={() => handleFiltro('verde')} 
+                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'verde'))} 
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Amarelo' 
-                                    funcao={() => handleFiltro('amarela')} 
+                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'amarela'))} 
                                 />
                                 
                             </nav>
@@ -100,13 +98,13 @@ export default function Listas() {
                     <section className={`${styles.container} limit`}>
 
                         <span className={styles.quantidade}>
-                            Quantidade : {dataFiltrada.length}
+                            Quantidade : {dadosFiltrados.length}
                         </span>
                     
                         <div className={styles.listas}>
 
                                 {
-                                    mostrarGestante(dataFiltrada, 'Nenhuma Gestante Cadastrada')
+                                    mostrarGestante(dadosFiltrados, 'Nenhuma Gestante Cadastrada')
                                     
                                 }
 
