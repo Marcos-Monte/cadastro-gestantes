@@ -45,7 +45,7 @@ export default function Formulario() {
       },
     }); 
    // Promessa se a requisição for bem sucecida
-    notifySuccess('Registrado com Sucesso');
+    notifySuccess('Dados enviados com sucesso');
     // Resetando os campos do formulário
     setNome("");
     setData("");

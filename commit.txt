@@ -1,12 +1,4 @@
-fix: Data não estava aparecendo na tela de listas de consulta. Ajustado no componente Registro para que receba o valor de 'data' (anteriormente estava como dn). 
-
-fix: Adicionando comentarios no componente 'listas.jsx'
-
-fix: no componente 'api.jsx' estava ocorrendo um erro onde o dado de 'data' não estava sendo transformado em um objeto 'Date()'. Concertado
-
-fix: funções de filtragem migradas para camada de serviço e são apenas importadas para o componente 'listas' afim de filtrar baseado no seu usuário
-
-fix: ajuste direto no 'MongoDB'. Onde o parametro 'equipe' estava configurado como valor unico.
+fix: Adicionando comentários nos componentes (listas e Formulário)
 
 
 

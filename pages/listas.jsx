@@ -29,15 +29,14 @@ export default function Listas() {
     // Função que faz a requisição HTTP GET e mostrando os dados
     function buscarDados(){
 
-        // Requisição 'GET' usando 'server' (objeto instanciado)
-        // Pega os dados da resposta e armazena nas variáveis de estado
+        // Requisição 'GET' usando 'server' (http://localhost:3000/ + api/api)
         server.get('api/api')
             .then((resposta) => {
-                setDados(resposta.data);
-                setDadosFiltrados(resposta.data);
+                setDados(resposta.data); // Dados armazenados na variável de estado
+                setDadosFiltrados(resposta.data); // Dados armazenados na variável de estado
             })
             .catch((erro) => {
-                setErro(erro.message || 'Erro ao carregar dados')
+                setErro(erro.message || 'Erro ao carregar dados') // Dados armazenados na variável de estado
             })
     }
 
