@@ -12,7 +12,7 @@ import Botao from "./BotaoSubmit.jsx";
 // Configurando uma 'instancia' de axios
 const server = axios.create({
   // URL do servidor (Backend)
-  baseURL: 'http://localhost:3000/api'
+  baseURL: 'https://cadastro-gestantes.vercel.app//api'
 })
 
 export default function Formulario() {
