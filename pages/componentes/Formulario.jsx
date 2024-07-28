@@ -12,7 +12,7 @@ import Botao from "./BotaoSubmit.jsx";
 // Configurando uma 'instancia' de axios
 const server = axios.create({
   // URL do servidor (Backend)
-  baseURL: 'https://cadastro-gestantes-git-master-marcosmontes-projects.vercel.app/'
+  baseURL: process.env.NEXT_PUBLIC_API_URL
 })
 
 export default function Formulario() {
