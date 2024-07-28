@@ -16,7 +16,7 @@ import mostrarGestante, { handleFiltro, handleSemFiltro } from '@/pages/services
 
 // Configuranco uma Instancia de Axios. Para fazer requisições HTTP
 const server = axios.create({
-    baseURL: 'https://cadastro-gestantes-git-master-marcosmontes-projects.vercel.app/'
+    baseURL: 'http://cadastro-gestantes-git-master-marcosmontes-projects.vercel.app/'
 })
 
 // Componente Principal
