@@ -16,7 +16,7 @@ import mostrarGestante, { handleFiltro, handleSemFiltro } from '@/pages/services
 
 // Configuranco uma Instancia de Axios. Para fazer requisições HTTP
 const server = axios.create({
-    baseURL: 'https://cadastro-gestantes.vercel.app/api'
+    baseURL: 'https://cadastro-gestantes-git-master-marcosmontes-projects.vercel.app/'
 })
 
 // Componente Principal
@@ -30,7 +30,7 @@ export default function Listas() {
     function buscarDados(){
 
         // Requisição 'GET' usando 'server' (http://localhost:3000/ + api/api)
-        server.get('/')
+        server.get('/api')
             .then((resposta) => {
                 setDados(resposta.data); // Dados armazenados na variável de estado
                 setDadosFiltrados(resposta.data); // Dados armazenados na variável de estado

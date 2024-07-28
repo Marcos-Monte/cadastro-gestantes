@@ -12,7 +12,7 @@ import Botao from "./BotaoSubmit.jsx";
 // Configurando uma 'instancia' de axios
 const server = axios.create({
   // URL do servidor (Backend)
-  baseURL: 'https://cadastro-gestantes.vercel.app/listas/api'
+  baseURL: 'https://cadastro-gestantes-git-master-marcosmontes-projects.vercel.app/'
 })
 
 export default function Formulario() {
@@ -38,7 +38,7 @@ export default function Formulario() {
 
   try{
     // Envia requisição 'POST' para a URL 'api/api' com os dados do formulário
-    await server.post('/', registro, {
+    await server.post('/api', registro, {
       // Cabeçalho que indica que os dados estão em formato JSON
       headers: {
         'Content-Type' : 'application/json'
