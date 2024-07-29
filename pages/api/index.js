@@ -8,7 +8,7 @@ export default async function handler(req, res){
     if(req.method === 'GET'){
 
         try {
-
+            console.log('DATABASE_URL:', process.env.DATABASE_URL); // Verificar se a variável está correta
             const gestantes = await prisma.cadastro.findMany();
             
             res.status(200).json(gestantes);
