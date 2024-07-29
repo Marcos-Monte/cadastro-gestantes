@@ -7,6 +7,7 @@ export default function Botao(props){
             type={props.tipo} 
             onClick={props.funcao}
         >
+        
             {props.nome}
         </button>
     )
