@@ -1,4 +1,11 @@
-fix: Alterando endereço de url (Local: https://localhost:3000/) de dev para produção (Vercel: https://cadastro-gestantes.vercel.app/)
+fix: refatorando código de requisição HTTP (axios)
+
+fix: apagando completamente os códigos referente a api e backend no geral
+
+feat: ajustando rotas de acesso ao backend da aplicação
+
+chore: desinstalando dependencias referente ao Backend (prisma, prisma@client)
+
 
 
 

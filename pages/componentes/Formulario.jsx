@@ -1,19 +1,15 @@
-// Biblioteca para fazer requisições HTTP
-import axios from "axios";
 // Biblioteca para gerenciar estado dos componentes
 import { useState } from "react";
+
+// Import de instancia de Axios: Biblioteca para fazer requisições HTTP
+import { server } from "../api/index.js";
+
 // Estilos CSS
 import styles from "@/styles/Formulario.module.css";
 //Notificações (toast)
-import { notifyError, notifySuccess } from "../api/notifys.jsx";
+import { notifyError, notifySuccess } from '../services/notifys.jsx';
 // Componente Botão
 import Botao from "./BotaoSubmit.jsx";
-
-// Configurando uma 'instancia' de axios
-const server = axios.create({
-  // URL do servidor (Backend)
-  baseURL: process.env.NEXT_PUBLIC_API_URL
-})
 
 export default function Formulario() {
   const [telefone, setTelefone] = useState("");
@@ -37,8 +33,8 @@ export default function Formulario() {
   
 
   try{
-    // Envia requisição 'POST' para a URL 'api/api' com os dados do formulário
-    await server.post('/api', registro, {
+    // Envia requisição 'POST' para o endpoint da API-backend com os dados do formulário
+    await server.post('/', registro, {
       // Cabeçalho que indica que os dados estão em formato JSON
       headers: {
         'Content-Type' : 'application/json'

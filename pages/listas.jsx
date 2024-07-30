@@ -1,6 +1,8 @@
 // Importando conteúdo das dependencias
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+
+// Import de instancia de Axios: Biblioteca para fazer requisições HTTP
+import { server } from './api';
 
 // Importando arquivo de estilização
 import styles from "@/styles/Listas.module.css";
@@ -15,9 +17,9 @@ import Header from "./componentes/Header";
 import mostrarGestante, { handleFiltro, handleSemFiltro } from '@/pages/services/service.jsx';
 
 // Configuranco uma Instancia de Axios. Para fazer requisições HTTP
-const server = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL
-})
+// const server = axios.create({
+//     baseURL: 'http://localhost:8000'
+// })
 
 // Componente Principal
 export default function Listas() {
@@ -30,7 +32,7 @@ export default function Listas() {
     function buscarDados(){
 
         // Requisição 'GET' usando 'server' (http://localhost:3000/ + api/api)
-        server.get('/api')
+        server.get('/listas')
             .then((resposta) => {
                 setDados(resposta.data); // Dados armazenados na variável de estado
                 setDadosFiltrados(resposta.data); // Dados armazenados na variável de estado
