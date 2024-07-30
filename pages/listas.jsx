@@ -16,14 +16,10 @@ import Header from "./componentes/Header";
 // Importando funções da camada de serviços
 import mostrarGestante, { handleFiltro, handleSemFiltro } from '@/pages/services/service.jsx';
 
-// Configuranco uma Instancia de Axios. Para fazer requisições HTTP
-// const server = axios.create({
-//     baseURL: 'http://localhost:8000'
-// })
-
 // Componente Principal
 export default function Listas() {
 
+    // Variaveis de Estado
     const [dados, setDados] = useState([]); // Estado para armazenar todos os dados
     const [dadosFiltrados, setDadosFiltrados] = useState([]); // Estado para armazenar os dados filtrados
     const [erro, setErro] = useState(null); // Estado para armazenar erros
@@ -31,7 +27,7 @@ export default function Listas() {
     // Função que faz a requisição HTTP GET e mostrando os dados
     function buscarDados(){
 
-        // Requisição 'GET' usando 'server' (http://localhost:3000/ + api/api)
+        // Envia requisição 'GET' para o endpoint da API-backend com os dados do formulário
         server.get('/listas')
             .then((resposta) => {
                 setDados(resposta.data); // Dados armazenados na variável de estado
@@ -106,7 +102,7 @@ export default function Listas() {
                         <div className={styles.listas}>
 
                                 {
-                                    mostrarGestante(dadosFiltrados, 'Nenhuma Gestante Cadastrada')
+                                    mostrarGestante(dadosFiltrados)
                                     
                                 }
 

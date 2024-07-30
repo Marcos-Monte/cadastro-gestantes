@@ -9,7 +9,7 @@ function formatDate(dateString) {
     return `${day}/${month}/${year}`;
 }
 
-export default function mostrarGestantes(listaGestantes, erro){
+export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestante Cadastrada'){
 
     // console.log('Tipo de listaGestantes:', typeof listaGestantes);
     // console.log('listaGestantes:', listaGestantes);
