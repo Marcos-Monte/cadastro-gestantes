@@ -28,13 +28,14 @@ export default function Listas() {
     function buscarDados(){
 
         // Envia requisição 'GET' para o endpoint da API-backend com os dados do formulário
-        server.get('/listas')
+        server.get('/')
             .then((resposta) => {
                 setDados(resposta.data); // Dados armazenados na variável de estado
                 setDadosFiltrados(resposta.data); // Dados armazenados na variável de estado
             })
             .catch((erro) => {
-                setErro(erro.message || 'Erro ao carregar dados') // Dados armazenados na variável de estado
+                // setErro(erro.message || 'Erro ao carregar dados') // Dados armazenados na variável de estado
+                setErro(erro.response ? erro.response.data : 'Erro ao carregar dados'); // Trata erro de resposta da API
             })
     }
 
