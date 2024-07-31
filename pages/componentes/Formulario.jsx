@@ -34,7 +34,7 @@ export default function Formulario() {
 
   try{
     // Envia requisição 'POST' para o endpoint da API-backend com os dados do formulário
-    await server.post('/', registro, {
+    await server.post('/cadastro', registro, {
       // Cabeçalho que indica que os dados estão em formato JSON
       headers: {
         'Content-Type' : 'application/json'
