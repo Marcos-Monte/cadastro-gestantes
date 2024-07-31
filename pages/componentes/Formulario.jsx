@@ -7,7 +7,7 @@ import { server } from "../api/index.js";
 // Estilos CSS
 import styles from "@/styles/Formulario.module.css";
 //Notificações (toast)
-import { notifyError, notifySuccess } from '../services/notifys.jsx';
+import notifySuccess, { notifyError } from '../services/notifys.jsx';
 // Componente Botão
 import Botao from "./BotaoSubmit.jsx";
 

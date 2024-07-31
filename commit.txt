@@ -1,7 +1,4 @@
-feat: configurando instancia do 'axios' para fazer requisições HTTP no Endpoint: https://apicadastrogestantes.onrender.com
-
-fix: alterando nome dos arquivos: index para cadastro ; listas para index. O intuíto é que a aplicação abra diretamente na página com os registros e só clicando no link que seja enviada para o cadastro
-
+fix: erro de 'export' no componente 'notifys' (todo componente deve ter um componente padrão)
 
 
 

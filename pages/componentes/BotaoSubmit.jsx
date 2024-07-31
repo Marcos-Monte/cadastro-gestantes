@@ -7,11 +7,8 @@ export default function Botao(props){
             type={props.tipo} 
             onClick={props.funcao}
         >
-<<<<<<< HEAD
         
-=======
             
->>>>>>> novaBranch
             {props.nome}
         </button>
     )
