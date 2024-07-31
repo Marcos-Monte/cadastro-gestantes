@@ -1,10 +1,6 @@
-fix: refatorando código de requisição HTTP (axios)
+feat: configurando instancia do 'axios' para fazer requisições HTTP no Endpoint: https://apicadastrogestantes.onrender.com
 
-fix: apagando completamente os códigos referente a api e backend no geral
-
-feat: ajustando rotas de acesso ao backend da aplicação
-
-chore: desinstalando dependencias referente ao Backend (prisma, prisma@client)
+fix: alterando nome dos arquivos: index para cadastro ; listas para index. O intuíto é que a aplicação abra diretamente na página com os registros e só clicando no link que seja enviada para o cadastro
 
 
 
