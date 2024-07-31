@@ -1,13 +1,64 @@
-import styles from "@/styles/Formulario.module.css";
-
+// Biblioteca para gerenciar estado dos componentes
 import { useState } from "react";
-import handleSubmit from "../api/submit.js";
+
+// Import de instancia de Axios: Biblioteca para fazer requisições HTTP
+import { server } from "../api/index.js";
+
+// Estilos CSS
+import styles from "@/styles/Formulario.module.css";
+//Notificações (toast)
+import { notifyError, notifySuccess } from '../services/notifys.jsx';
+// Componente Botão
 import Botao from "./BotaoSubmit.jsx";
 
 export default function Formulario() {
   const [telefone, setTelefone] = useState("");
   const [nome, setNome] = useState("");
+  const [data, setData] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [equipe, setEquipe] = useState('');
 
+  async function addUser(event){
+  // Previne o comportamento Padrão. Impede que o formulário seja enviado de forma tradicional
+  event.preventDefault();
+
+  // Cria o objeto Json
+  const registro = {
+    nome: nome,
+    data: new Date(data), // Exemplo de como enviar a data no formato ISO
+    endereco: endereco,
+    telefone: telefone,
+    equipe: equipe
+  }
+  
+
+  try{
+    // Envia requisição 'POST' para o endpoint da API-backend com os dados do formulário
+    await server.post('/', registro, {
+      // Cabeçalho que indica que os dados estão em formato JSON
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+    }); 
+   // Promessa se a requisição for bem sucecida
+    notifySuccess('Dados enviados com sucesso');
+    // Resetando os campos do formulário
+    setNome("");
+    setData("");
+    setEndereco("");
+    setTelefone("");
+    setEquipe("");
+
+  } catch(error) {
+    // Promessa se a requisição não sucedida
+    console.error('Erro ao enviar dados:', error.response ? error.response.data : error.message);
+    notifyError(error.response ? error.response.data.error : 'Erro ao enviar dados');
+    notifyError(error.message || 'Erro ao enviar dados')
+
+  }
+}
+
+ // Filtra a entrada e permite apenas letras e espaços. Atualiza o estado 'nome'
   const handleNomeChange = (e) => {
     const value = e.target.value;
     // console.log("Input Value: ", value); // Verificar o valor do input
@@ -16,6 +67,7 @@ export default function Formulario() {
     // console.log("Nome State: ", name); // Verificar o estado
   };
 
+  // Remove catacteres não numéricos e formata o valor de entrada
   const handleWhatsChange = (e) => {
     const value = e.target.value;
     // Remover todos os caracteres não numéricos
@@ -31,13 +83,13 @@ export default function Formulario() {
     }
     // Se tiver mais de 11 dígitos, não atualiza o estado (ignora entrada adicional)
   };
+
   return (
     <form
       className={styles.formulario}
-      action="https://sheetdb.io/api/v1/pexqrnjxmcmxj"
-      methor="post"
+      method="post"
       id="formulario"
-      onSubmit={handleSubmit}
+      onSubmit={addUser}
     >
       <legend className={styles.tituloFormulario}>Cadastro de Gestante</legend>
 
@@ -68,7 +120,9 @@ export default function Formulario() {
             className={styles.input}
             type="date"
             id="id-dn"
-            name="data[dn]"
+            max={`3024-12-31`}
+            value={data}
+            onChange={(e) => setData(e.target.value)}
             required
           />
         </div>
@@ -82,6 +136,8 @@ export default function Formulario() {
             type="text"
             id="id-endereco"
             name="data[endereco]"
+            onChange={(e) => setEndereco(e.target.value)}
+            value={endereco}
             placeholder="Endereço Completo"
             required
           />
@@ -98,6 +154,7 @@ export default function Formulario() {
             name="data[telefone]"
             onChange={handleWhatsChange}
             value={telefone}
+            minLength={11}
             maxLength={11}
             placeholder="(XX) XXXXX-XXXX"
             required
@@ -112,6 +169,8 @@ export default function Formulario() {
             className={styles.input}
             name="data[equipe]"
             id="id-equipe"
+            value={equipe}
+            onChange={(event) => setEquipe(event.target.value)}
             required
           >
             <option className={styles.opcao} value="">
@@ -130,7 +189,7 @@ export default function Formulario() {
         </div>
       </fieldset>
 
-      <Botao estilo="botaoSubmit" tipo="submit" nome="Cadastrar" />
+      <Botao estilo="botaoSubmit" tipo="submit" nome="Cadastrar"/>
     </form>
   );
 }

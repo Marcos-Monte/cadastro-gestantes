@@ -10,8 +10,8 @@ export default function Header(props){
                 <i className={`bi bi-balloon-heart ${styles.logo}`}></i>
 
                 <nav className={styles.nav}>
-                    <Link className={styles.link} href='/'>Cadastro</Link>
-                    <Link className={styles.link} href='/listas'>Listas</Link>
+                    <Link className={styles.link} href='/'>Gestantes</Link>
+                    <Link className={styles.link} href='/cadastro'>Cadastro</Link>
                 </nav>
                 
             </div>
