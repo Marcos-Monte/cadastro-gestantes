@@ -3,7 +3,8 @@
 <p align="center">
  <!-- <a href="#layout">Layout</a> • -->
  <a href="#tech">Tecnologias</a> • 
- <a href="#started">Primeiros Passos</a>
+ <a href="#started">Primeiros Passos</a> • 
+ <a href="#back">Acesso ao BackEnd</a>
 </p>
 
 <p align="center">
@@ -35,10 +36,16 @@
 
 <h2 id="tech">💻 Tecnologias</h2>
 
-- Next.js
-- React.js
-- JavaScript
-- Web API SheetDB
+- Next.js: Framework React para renderização do lado do servidor e criação de rotas.
+- React.js: Biblioteca JavaScript para construção de interfaces de usuário.
+- JavaScript: Linguagem de programação principal para o desenvolvimento da aplicação.
+- Axios: Cliente HTTP para fazer requisições ao backend.
+- React-Toastify: Biblioteca para exibir notificações de forma simples e estilizada.
+
+<h2 id="back">Acesso ao BackEnd</h2>
+A aplicação 'cadastro-gestantes' utiliza a API <a href="https://github.com/Marcos-Monte/api-cadastro-gestantes">api-cadastro-gestantes</a> para todas as operações de backend, incluindo a gestão dos dados de gestantes e equipes de saúde. Para mais detalhes sobre a API, acesse o <a href="https://github.com/Marcos-Monte/api-cadastro-gestantes/blob/master/README.md">README da API-Cadastro-Gestante</a>.
+
+
 
 <h2 id="started">🚀 Primeiros Passos</h2>
 
@@ -47,9 +54,9 @@ npm run dev
 ```
 <h3>Pré-requisitos</h3>
 
-- Framework React: NextJS [NextJS](https://nextjs.org/)
-- Ambiente JavaScript: NodeJS [NodeJS](https://nodejs.org/en)
-- Controle de Versão: Git [Git](https://git-scm.com/)
+- Framework React:  [NextJS](https://nextjs.org/)
+- Ambiente JavaScript:  [NodeJS](https://nodejs.org/en)
+- Controle de Versão:  [Git](https://git-scm.com/)
 
 <h3>Clonagem</h3>
 
