@@ -1,4 +1,6 @@
-feat: atualizar pagina após deletar algum registro
+feat: no componente 'Index' a função 'useEffect' irá buscar dados no 'Banco de Dados' a cada 5 segundos (polling). 
 
-styled: atribuindo nova estilização ao botão 'Geral' 
+fix: Retirada função de 'delay' da função de 'delete'
+
+
 

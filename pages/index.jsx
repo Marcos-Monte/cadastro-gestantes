@@ -41,7 +41,15 @@ export default function Listas() {
     // useEffect, garante que a requisição seja feita apenas uma vez ao iniciar a pagina
     useEffect(() => {
 
-        buscarDados()
+        buscarDados(); // Buscar dados ao montar o componente
+
+        // Configurar intervalo de polling
+        const intervalo = setInterval(() => {
+            buscarDados(); // Buscar dados a cada 5 segundos
+        }, 5000);
+
+        // Limpar o intervalo quando o componente for desmontado
+        return () => clearInterval(intervalo);
 
     }, [] // Array vazio garante que o useEffect rode apenas uma vez
 );
