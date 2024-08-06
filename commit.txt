@@ -1,4 +1,4 @@
-feat: adicionado 'alert' pela função 'notifyError e notifySucess' em sempre que os métodos (delete e put) forem executados
+feat: atualizar pagina após deletar algum registro
 
-styled: melhorando responsividade dos componentes 'Registro' e 'Botao' para resoluções abaixo de 500px
+styled: atribuindo nova estilização ao botão 'Geral' 
 

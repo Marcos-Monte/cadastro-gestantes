@@ -66,8 +66,8 @@ export default function Listas() {
                         <div className={styles.containerFiltros}>
                             <nav className={`${styles.filtros} limit`}>
                                 <Botao 
-                                    estilo='botaoSubmit' 
-                                    nome='Todas' 
+                                    estilo='botaoSubmit2' 
+                                    nome='Geral' 
                                     funcao= {() => setDadosFiltrados(handleSemFiltro(dados))} 
                                 />
                                 <Botao 

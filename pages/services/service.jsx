@@ -22,6 +22,13 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
     const [registroId, setRegistroId] = useState(null);
     const [dados, setDados] = useState(listaGestantes); // Usar listaGestantes como dados iniciais
 
+    // Função para recarregar a página com atraso
+const delayReload = (delayInMilliseconds) => {
+    setTimeout(() => {
+        window.location.reload();
+    }, delayInMilliseconds);
+};
+
     // Função para atualizar o estado com o ID do registro clicado
     const handleRegistroClick = (id) => {
         setRegistroId(id);
@@ -40,6 +47,8 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
                 setRegistroId(null); // Limpar o ID selecionado
                 // Alert de Requisição for bem sucecida
                 notifySuccess('Registro deletado com sucesso!');
+                 // Recarregar a página após um atraso de 3 segundos
+                delayReload(4000);
 
             } catch (error) {
                 console.error('Erro ao deletar o registro:', error.response ? error.response.data : error.message);
