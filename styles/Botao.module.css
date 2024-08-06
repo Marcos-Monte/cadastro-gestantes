@@ -1,4 +1,4 @@
-.botaoSubmit{
+.botaoSubmit, .botaoRegistro{
     width: 150px;
     margin: 0 auto;
     background-color: transparent;
@@ -10,15 +10,26 @@
     font-weight: bold;
 }
 
+.botaoRegistro{
+    background-image: linear-gradient(160deg, var(--primary-lightiest) 31%, var(--primary) 95%);
+}
+
+
 /* Hover */
 .botaoSubmit:hover{
     background-image: linear-gradient(160deg, var(--secondary) 31%, var(--secondary-lightiest) 95%);
     color: var(--light-font);
 }
 
+.botaoRegistro:hover{
+    background-image: linear-gradient(160deg, var(--primary) 31%, var(--primary-lightiest) 95%);
+    color: var(--light-font);
+}
+
+
 /* Medias */
 @media screen and (max-width: 355px){
-    .botaoSubmit{
+    .botaoSubmit, .botaoRegistro{
         width: 80%
     }
 }

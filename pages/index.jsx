@@ -25,18 +25,17 @@ export default function Listas() {
     const [erro, setErro] = useState(null); // Estado para armazenar erros
 
     // Função que faz a requisição HTTP GET e mostrando os dados
-    function buscarDados(){
-
+    const buscarDados = async () => {
+        
         // Envia requisição 'GET' para o endpoint da API-backend com os dados do formulário
-        server.get('/')
-            .then((resposta) => {
-                setDados(resposta.data); // Dados armazenados na variável de estado
-                setDadosFiltrados(resposta.data); // Dados armazenados na variável de estado
-            })
-            .catch((erro) => {
-                // setErro(erro.message || 'Erro ao carregar dados') // Dados armazenados na variável de estado
-                setErro(erro.response ? erro.response.data : 'Erro ao carregar dados'); // Trata erro de resposta da API
-            })
+        try {
+            const resposta = await server.get('/');
+            setDados(resposta.data) // Dados armazenados na variável de estado
+            setDadosFiltrados(resposta.data) // Dados armazenados na variável de estado
+
+        } catch(erro) {
+            setErro(erro.response ? erro.response.data : 'Erro ao carregar dados')
+        }
     }
 
     // useEffect, garante que a requisição seja feita apenas uma vez ao iniciar a pagina

@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { server } from "../api";
+
 // Função que importa Registro de Gestante na Lista
 import Registro from "../componentes/Registro";
 
@@ -14,6 +17,45 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
     // console.log('Tipo de listaGestantes:', typeof listaGestantes);
     // console.log('listaGestantes:', listaGestantes);
 
+    const [registroId, setRegistroId] = useState(null);
+    const [dados, setDados] = useState(listaGestantes); // Usar listaGestantes como dados iniciais
+
+    // Função para atualizar o estado com o ID do registro clicado
+    const handleRegistroClick = (id) => {
+        setRegistroId(id);
+        console.log('ID do registro clicado:', id); // Para depuração
+    };
+
+    // Função para deletar o registro
+    const handleDelete = async () => {
+        console.log("Deletando ID:", registroId);
+        if (registroId) {
+            try {
+                await server.delete(`/${registroId}`); // Ajuste o endpoint conforme necessário
+                console.log('Registro deletado com sucesso');
+                // Atualize a lista de dados após a deleção
+                setDados(dados.filter(item => item.id !== registroId));
+                setRegistroId(null); // Limpar o ID selecionado
+            } catch (error) {
+                console.error('Erro ao deletar o registro:', error.response ? error.response.data : error.message);
+            }
+        }
+    };
+
+    // Função para atualizar o registro
+    const handleUpdate = async (id) => {
+        console.log("Atualizando ID:", id);
+        try {
+            const novosDados = { /* Dados atualizados */ };
+            await server.put(`/${id}`, novosDados); // Ajuste o endpoint e os dados conforme necessário
+            console.log('Registro atualizado com sucesso');
+            // Atualize a lista de dados após a atualização
+            setDados(dados.map(item => item.id === id ? { ...item, ...novosDados } : item));
+        } catch (error) {
+            console.error('Erro ao atualizar o registro:', error.response ? error.response.data : error.message);
+        }
+    };
+
     if(!Array.isArray(listaGestantes)){
         return <p>Dados inválidos: Não é uma lista</p>
     }
@@ -22,16 +64,20 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
     
         listaGestantes.map(
 
-            (gestante, index) => (
+            (gestante) => (
 
                 
                 <Registro 
-                    key={index}
+                    key={gestante.id} // Use o ID como chave
+                    id={gestante.id}
                     nome={gestante.nome}
                     dn={formatDate(gestante.data)}
                     endereco={gestante.endereco}
                     telefone={gestante.telefone}
                     equipe={gestante.equipe}
+                    pegarIdRegistro={handleRegistroClick} // Passa a função de clique
+                    onDelete={handleDelete} // Passa a função de deletar
+                    onUpdate={handleUpdate} // Passa a função de atualizar
                 />
 
             )

@@ -1,4 +1,8 @@
-fix: erro de 'export' no componente 'notifys' (todo componente deve ter um componente padrão)
+refactor: refatorando a função de 'buscarDados' do Método GET (Axios)
+
+feat: criados botões no componente 'Registro' para deletar e / ou atualizar registros do Banco de Dados.
+
+feat: lógica de 'buscar ID do registro', 'deletar Registro' e 'Atualizar Registro' implementadas no componente Registro e na camada de 'services' da aplicação.
 
 
 
