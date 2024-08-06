@@ -4,6 +4,8 @@ import { server } from "../api";
 // Função que importa Registro de Gestante na Lista
 import Registro from "../componentes/Registro";
 
+import notifySuccess, { notifyError } from "./notifys.jsx";
+
 function formatDate(dateString) {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
@@ -36,8 +38,13 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
                 // Atualize a lista de dados após a deleção
                 setDados(dados.filter(item => item.id !== registroId));
                 setRegistroId(null); // Limpar o ID selecionado
+                // Alert de Requisição for bem sucecida
+                notifySuccess('Registro deletado com sucesso!');
+
             } catch (error) {
                 console.error('Erro ao deletar o registro:', error.response ? error.response.data : error.message);
+                // Alert de Requisição for mal sucecida
+                notifyError(error.message || 'Erro ao deletar registro')
             }
         }
     };
@@ -51,8 +58,12 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
             console.log('Registro atualizado com sucesso');
             // Atualize a lista de dados após a atualização
             setDados(dados.map(item => item.id === id ? { ...item, ...novosDados } : item));
+            // Alert de Requisição for bem sucecida
+            notifySuccess('Registro atualizado com sucesso!');
         } catch (error) {
             console.error('Erro ao atualizar o registro:', error.response ? error.response.data : error.message);
+            // Alert de Requisição for mal sucecida
+            notifyError(error.message || 'Erro ao deletar registro')
         }
     };
 

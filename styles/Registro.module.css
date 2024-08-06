@@ -30,3 +30,14 @@
     color: var(--dark-font)
 }
 
+/* Media Queries */
+@media screen and (max-width: 500px){
+    .registro{
+        flex-direction: column;
+    }
+
+    .botoes{
+        flex-direction: row;
+    }
+}
+

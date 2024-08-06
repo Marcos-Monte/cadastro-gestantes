@@ -28,8 +28,8 @@
 
 
 /* Medias */
-@media screen and (max-width: 355px){
+@media screen and (max-width: 500px){
     .botaoSubmit, .botaoRegistro{
-        width: 80%
+        width: 100px
     }
 }
