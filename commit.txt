@@ -1,6 +1,6 @@
-feat: no componente 'Index' a função 'useEffect' irá buscar dados no 'Banco de Dados' a cada 5 segundos (polling). 
+fix: função 'handleDelete' ativada ao clicar no botão de deletar registro, foi atualizada recebendo o 'id do registro' e não mais o valor da 'variavel de estado registro'
 
-fix: Retirada função de 'delay' da função de 'delete'
+fix: funções de captura do id via 'click' foram descontinuadas
 
 
 

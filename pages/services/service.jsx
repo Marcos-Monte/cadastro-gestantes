@@ -19,34 +19,24 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
     // console.log('Tipo de listaGestantes:', typeof listaGestantes);
     // console.log('listaGestantes:', listaGestantes);
 
-    const [registroId, setRegistroId] = useState(null);
     const [dados, setDados] = useState(listaGestantes); // Usar listaGestantes como dados iniciais
 
-    // Função para atualizar o estado com o ID do registro clicado
-    const handleRegistroClick = (id) => {
-        setRegistroId(id);
-        console.log('ID do registro clicado:', id); // Para depuração
-    };
-
     // Função para deletar o registro
-    const handleDelete = async () => {
-        console.log("Deletando ID:", registroId);
-        if (registroId) {
+    const handleDelete = async (id) => {
+        console.log("Deletando ID:", id);
             try {
-                await server.delete(`/${registroId}`); // Ajuste o endpoint conforme necessário
+                await server.delete(`/${id}`); // Ajuste o endpoint conforme necessário
                 console.log('Registro deletado com sucesso');
                 // Atualize a lista de dados após a deleção
-                setDados(dados.filter(item => item.id !== registroId));
-                setRegistroId(null); // Limpar o ID selecionado
-                // Alert de Requisição for bem sucecida
+                setDados(dados.filter(item => item.id !== id));
                 notifySuccess('Registro deletado com sucesso!');
+                console.log("Deletando ID:", id);
 
             } catch (error) {
                 console.error('Erro ao deletar o registro:', error.response ? error.response.data : error.message);
                 // Alert de Requisição for mal sucecida
                 notifyError(error.message || 'Erro ao deletar registro')
             }
-        }
     };
 
     // Função para atualizar o registro
@@ -76,7 +66,6 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
         listaGestantes.map(
 
             (gestante) => (
-
                 
                 <Registro 
                     key={gestante.id} // Use o ID como chave
@@ -86,9 +75,8 @@ export default function mostrarGestantes(listaGestantes, erro = 'Nenhuma Gestant
                     endereco={gestante.endereco}
                     telefone={gestante.telefone}
                     equipe={gestante.equipe}
-                    pegarIdRegistro={handleRegistroClick} // Passa a função de clique
-                    onDelete={handleDelete} // Passa a função de deletar
-                    onUpdate={handleUpdate} // Passa a função de atualizar
+                    onDelete={() => handleDelete(gestante.id)} // Passa a função de deletar
+                    onUpdate={() => handleUpdate(gestante.id)} // Passa a função de atualizar
                 />
 
             )

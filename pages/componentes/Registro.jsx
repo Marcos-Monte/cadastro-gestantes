@@ -4,14 +4,9 @@ import styles from '@/styles/Registro.module.css';
 
 export default function Registro(props){
 
-    // Função para lidar com o clique no registro
-    const handleClick = () => {
-        console.log("Registro clicado:", props.id);
-        props.pegarIdRegistro(props.id); // Passa o ID para a função onClick fornecida via props
-    };
-
     // Função para lidar com o clique no botão de deletar
     const handleDelete = () => {
+        // handleClick();
         console.log("Delete clicado para ID:", props.id);
         if (props.onDelete) {
             props.onDelete(props.id); // Passa o ID para a função onDelete fornecida via props
@@ -27,7 +22,7 @@ export default function Registro(props){
     };
 
     return (
-        <div className={styles.registro} onClick={handleClick}>
+        <div className={styles.registro}  >
 
             <div className={styles.dados} >
                 <p className={styles.nome}>Nome: {props.nome}</p>
