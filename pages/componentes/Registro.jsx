@@ -33,11 +33,11 @@ export default function Registro(props){
             </div>
 
             <div className={styles.botoes}>
-                <Botao 
+                {/* <Botao 
                     estilo='botaoRegistro'
                     nome='Atualizar'
                     funcao={handleUpdate}
-                /> 
+                />  */}
                 <Botao 
                     estilo='botaoRegistro'
                     nome='Deletar'

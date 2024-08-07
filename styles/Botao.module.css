@@ -45,7 +45,7 @@
 
 /* Medias */
 @media screen and (max-width: 500px){
-    .botaoSubmit, .botaoRegistro{
+    .botaoSubmit, .botaoRegistro, .botaoSubmit2{
         width: 100px
     }
 }

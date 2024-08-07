@@ -1,6 +1,6 @@
-fix: função 'handleDelete' ativada ao clicar no botão de deletar registro, foi atualizada recebendo o 'id do registro' e não mais o valor da 'variavel de estado registro'
+refactor: componentes 'Gestantes' e 'Geral' são atribuídos a variavel de estado 'conteudo' via click em botão específico e assim alternando entre o conteudo principal da pagina
 
-fix: funções de captura do id via 'click' foram descontinuadas
+fix: desabilitada a lógica de buscar dados no 'Banco de Dados' a cada 5 segundos (polling).Estava gerando erro na hora de contabilizar quantos registro existem em cada equipe
 
 
 

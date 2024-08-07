@@ -13,8 +13,10 @@ import Botao from "./componentes/BotaoSubmit";
 import Footer from "./componentes/Footer";
 import Header from "./componentes/Header";
 
-// Importando funções da camada de serviços
-import mostrarGestante, { handleFiltro, handleSemFiltro } from '@/pages/services/service.jsx';
+// Conteudo dinâmico da pagina
+import Geral from './componentes/Geral';
+import Gestantes from './componentes/Gestantes';
+import { handleFiltro } from './services/service';
 
 // Componente Principal
 export default function Listas() {
@@ -24,12 +26,16 @@ export default function Listas() {
     const [dadosFiltrados, setDadosFiltrados] = useState([]); // Estado para armazenar os dados filtrados
     const [erro, setErro] = useState(null); // Estado para armazenar erros
 
+    // Conteudo Principal da Pagina
+    const [conteudo, setConteudo] = useState(<Geral />)
+
     // Função que faz a requisição HTTP GET e mostrando os dados
     const buscarDados = async () => {
         
         // Envia requisição 'GET' para o endpoint da API-backend com os dados do formulário
         try {
             const resposta = await server.get('/');
+            console.log('Resposta da API:', resposta.data); // Verifique aqui
             setDados(resposta.data) // Dados armazenados na variável de estado
             setDadosFiltrados(resposta.data) // Dados armazenados na variável de estado
 
@@ -43,19 +49,24 @@ export default function Listas() {
 
         buscarDados(); // Buscar dados ao montar o componente
 
-        // Configurar intervalo de polling
-        const intervalo = setInterval(() => {
-            buscarDados(); // Buscar dados a cada 5 segundos
-        }, 5000);
+        // // Configurar intervalo de polling
+        // const intervalo = setInterval(() => {
+        //     buscarDados(); // Buscar dados a cada 5 segundos
+        // }, 5000);
 
-        // Limpar o intervalo quando o componente for desmontado
-        return () => clearInterval(intervalo);
+        // // Limpar o intervalo quando o componente for desmontado
+        // return () => clearInterval(intervalo);
 
     }, [] // Array vazio garante que o useEffect rode apenas uma vez
 );
 
     if (erro) return <div>Error: {erro}</div>;
 
+    function handleClickFilter(equipe){
+        const dadosFiltradosPorEquipe = handleFiltro(dados, equipe);
+        setDadosFiltrados(dadosFiltradosPorEquipe);
+        setConteudo(<Gestantes listaGestantes={dadosFiltradosPorEquipe} />);
+    }
 
     return (
         <>
@@ -76,22 +87,29 @@ export default function Listas() {
                                 <Botao 
                                     estilo='botaoSubmit2' 
                                     nome='Geral' 
-                                    funcao= {() => setDadosFiltrados(handleSemFiltro(dados))} 
+                                    funcao= {() => {
+                                        setConteudo(<Geral />)}} 
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Azul' 
-                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'azul'))} 
+                                    funcao={() => {
+                                        handleClickFilter('azul')
+                                    }} 
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
                                     nome='Verde' 
-                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'verde'))} 
+                                    funcao={() => {
+                                        handleClickFilter('verde')
+                                    }}  
                                 />
                                 <Botao 
                                     estilo='botaoSubmit' 
-                                    nome='Amarelo' 
-                                    funcao={() => setDadosFiltrados(handleFiltro(dados, 'amarela'))} 
+                                    nome='Amarela' 
+                                    funcao={() => {
+                                        handleClickFilter('amarela')
+                                    }}  
                                 />
                                 
                             </nav>
@@ -110,7 +128,7 @@ export default function Listas() {
                         <div className={styles.listas}>
 
                                 {
-                                    mostrarGestante(dadosFiltrados)
+                                    conteudo
                                     
                                 }
 
