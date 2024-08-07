@@ -1,6 +1,3 @@
-refactor: componentes 'Gestantes' e 'Geral' são atribuídos a variavel de estado 'conteudo' via click em botão específico e assim alternando entre o conteudo principal da pagina
-
-fix: desabilitada a lógica de buscar dados no 'Banco de Dados' a cada 5 segundos (polling).Estava gerando erro na hora de contabilizar quantos registro existem em cada equipe
-
+feat: a função 'formatDate' agora recebe a data de acordo com o fuso horário local
 
 
