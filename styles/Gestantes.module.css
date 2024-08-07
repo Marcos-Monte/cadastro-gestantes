@@ -1,0 +1,12 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.quantidade{
+    padding: 2rem 0;
+    color: var(--secondary);
+    font-size: 2rem;
+    font-weight: bold;
+}

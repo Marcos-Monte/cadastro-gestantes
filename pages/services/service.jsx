@@ -21,8 +21,5 @@ export function handleFiltro(colecaoDados, equipe){
     
 }
 
-export function handleSemFiltro(colecaoDados){
-    return colecaoDados;
-}
 
 

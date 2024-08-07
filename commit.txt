@@ -1,3 +1,4 @@
-feat: a função 'formatDate' agora recebe a data de acordo com o fuso horário local
+refactoring: componente principal apenas irá definir seu conteudo de acordo com a interação do usuário aos botões equivalentes.
 
+feat: desenvolvida a logica GET nos componentes 'Gestantes e Geral'. Cada botão filtra a lista para uma equipe diferente e o geral mostrará dados de todas as equipes juntas
 

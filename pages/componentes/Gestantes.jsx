@@ -1,81 +1,90 @@
-import { useState } from "react";
-import { server } from "../api";
+// Importando conteúdo das dependencias
+import { useEffect, useState } from 'react';
+
+// Buscar dados armazenados no BD
+import { buscarDados } from '../api/index.js';
+
+// Arquivo de Estilização
+import styles from '@/styles/Gestantes.module.css';
 
 // Função que importa Registro de Gestante na Lista
 import Registro from "../componentes/Registro";
 
-// Alerts de sucesso ou erro
-import notifySuccess, { notifyError } from "../services/notifys";
+// Métodos 'delete e update'
+import { atualizarRegistro, deletarRegistro } from '../api';
 
+// Função para formatar data de nascimento
 import { formatDate } from "../services/service";
 
-export default function Gestantes({listaGestantes = [], erro = 'Nenhuma Gestante Cadastrada'}){
+export default function Gestantes(props){
 
-    // console.log('Tipo de listaGestantes:', typeof listaGestantes);
-    // console.log('listaGestantes:', listaGestantes);
+    // Variaveis de Estado
+    const [dados, setDados] = useState([]); // Estado para armazenar todos os dados
+    const [erro, setErro] = useState(null); // Estado para armazenar erros
+    const [carregando, setCarregando] = useState(true); // Estado para controlar o carregamento
 
-    const [dados, setDados] = useState(listaGestantes); // Usar listaGestantes como dados iniciais
+    // Função 'assincrona' : Método GET no banco de Dados
+    const fetchData = async (equipe) => {
+        try{
+            const resultado = await buscarDados();
 
-    // Função para deletar o registro
-    const handleDelete = async (id) => {
-        console.log("Deletando ID:", id);
-            try {
-                await server.delete(`/${id}`); // Ajuste o endpoint conforme necessário
-                console.log('Registro deletado com sucesso');
-                // Atualize a lista de dados após a deleção
-                setDados(dados.filter(item => item.id !== id));
-                notifySuccess('Registro deletado com sucesso!');
-                console.log("Deletando ID:", id);
+            // Filtrando a lista
+            const resultadoFiltrado = resultado.filter(
+                (gestante) => gestante.equipe === equipe
+            )
 
-            } catch (error) {
-                console.error('Erro ao deletar o registro:', error.response ? error.response.data : error.message);
-                // Alert de Requisição for mal sucecida
-                notifyError(error.message || 'Erro ao deletar registro')
-            }
-    };
+            // Atribuindo lista filtrada a variavel de estado 'dados'
+            setDados(resultadoFiltrado)
+            
+        } catch(erro){
+            setErro('Erro ao carregar dados')
 
-    // Função para atualizar o registro
-    const handleUpdate = async (id) => {
-        console.log("Atualizando ID:", id);
-        try {
-            const novosDados = { /* Dados atualizados */ };
-            await server.put(`/${id}`, novosDados); // Ajuste o endpoint e os dados conforme necessário
-            console.log('Registro atualizado com sucesso');
-            // Atualize a lista de dados após a atualização
-            setDados(dados.map(item => item.id === id ? { ...item, ...novosDados } : item));
-            // Alert de Requisição for bem sucecida
-            notifySuccess('Registro atualizado com sucesso!');
-        } catch (error) {
-            console.error('Erro ao atualizar o registro:', error.response ? error.response.data : error.message);
-            // Alert de Requisição for mal sucecida
-            notifyError(error.message || 'Erro ao deletar registro')
+        }finally {
+            setCarregando(false)
+
         }
-    };
-
-    if(!Array.isArray(listaGestantes)){
-        return <p>Dados inválidos: Não é uma lista</p>
     }
 
-    return (listaGestantes.length > 0 ?
+    // useEffect agora inclui 'props.filtro' como dependência
+    useEffect(() => {
+        
+        if (props.filtro) {
+            fetchData(props.filtro);
+        }
+
+    }, [props.filtro]); // Adiciona props.filtro ao array de dependências
     
-        listaGestantes.map(
+    if (erro) return <div>Error: {erro}</div>;
 
-            (gestante) => (
+    return (
+        <div className={styles.container}>
+            <span className={styles.quantidade}>
+                    Quantidade : {dados.length}
+            </span>
+            {
                 
-                <Registro 
-                    key={gestante.id} // Use o ID como chave
-                    id={gestante.id}
-                    nome={gestante.nome}
-                    dn={formatDate(gestante.data)}
-                    endereco={gestante.endereco}
-                    telefone={gestante.telefone}
-                    equipe={gestante.equipe}
-                    onDelete={() => handleDelete(gestante.id)} // Passa a função de deletar
-                    onUpdate={() => handleUpdate(gestante.id)} // Passa a função de atualizar
-                />
-
-            )
-        ) : <p>{erro}</p>
+                dados.length > 0 ?
+    
+                dados.map(
+        
+                    (gestante) => (
+                        
+                        <Registro 
+                            key={gestante.id} // Use o ID como chave
+                            id={gestante.id}
+                            nome={gestante.nome}
+                            dn={formatDate(gestante.data)}
+                            endereco={gestante.endereco}
+                            telefone={gestante.telefone}
+                            equipe={gestante.equipe}
+                            onDelete={() => deletarRegistro(gestante.id, dados)} // Passa a função de deletar
+                            onUpdate={() => atualizarRegistro(gestante.id)} // Passa a função de atualizar
+                        />
+        
+                    )
+                ) : <p>{erro}</p>
+            }
+        </div>
     )
 
 }
