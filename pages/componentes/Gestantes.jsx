@@ -47,10 +47,24 @@ export default function Gestantes(props){
 
     // useEffect agora inclui 'props.filtro' como dependência
     useEffect(() => {
-        
+
         if (props.filtro) {
             fetchData(props.filtro);
-        }
+        } // Buscar dados a cada 5 segundos
+
+         // Configurar intervalo de polling
+         const intervalo = setInterval(() => {
+            if (props.filtro) {
+                fetchData(props.filtro);
+            } // Buscar dados a cada 5 segundos
+        }, 5000);
+
+        // Limpar o intervalo quando o componente for desmontado
+        return () => clearInterval(intervalo);
+        
+        
+
+       
 
     }, [props.filtro]); // Adiciona props.filtro ao array de dependências
     
@@ -72,10 +86,13 @@ export default function Gestantes(props){
                         <Registro 
                             key={gestante.id} // Use o ID como chave
                             id={gestante.id}
-                            nome={gestante.nome}
+                            nomeGestante={gestante.nome}
                             dn={formatDate(gestante.data)}
+                            dum={formatDate(gestante.dum)}
+                            gestacoes={gestante.gestacoes}
                             endereco={gestante.endereco}
                             telefone={gestante.telefone}
+                            parceiro={gestante.parceiro}
                             equipe={gestante.equipe}
                             onDelete={() => deletarRegistro(gestante.id, dados)} // Passa a função de deletar
                             onUpdate={() => atualizarRegistro(gestante.id)} // Passa a função de atualizar

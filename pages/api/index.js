@@ -20,7 +20,7 @@ export const buscarDados = async () => {
         const resposta = await server.get('/');
         // console.log('Resposta da API:', resposta.data); // Verifique aqui
         resultado =  resposta.data // Dados armazenados na variável de estado
-        console.log('Resposta da API:', resultado); // Verifique aqui
+        // console.log('Resposta da API:', resultado); // Verifique aqui
 
     } catch(erro) {
         resultado = erro.response ? erro.response.data : 'Erro ao carregar dados'
@@ -28,15 +28,6 @@ export const buscarDados = async () => {
 
     return resultado;
 }
-
-// export async function buscarPorEquipe(equipe){
-//     const listaGestantes = await buscarDados();
-//     const listaFiltrada = listaGestantes.filter(
-//         (gestante) => gestante.equipe === equipe
-//     )
-
-//     return listaFiltrada
-// }
 
 // Função para deletar o registro
 export const deletarRegistro = async (id, dados) => {
@@ -84,4 +75,27 @@ export const atualizarRegistro = async (id) => {
     return resultado;
 
 };
+
+// Função para adicionar novo registro
+export const criarRegistro = async (registro) => {
+    
+    try{
+        // Envia requisição 'POST' para o endpoint da API-backend com os dados do formulário
+        await server.post('/cadastro', registro, {
+            // Cabeçalho que indica que os dados estão em formato JSON
+            headers: {
+            'Content-Type' : 'application/json'
+            },
+        }); 
+        // Promessa se a requisição for bem sucecida
+        notifySuccess('Dados enviados com sucesso');
+
+    } catch(error) {
+        // Promessa se a requisição não sucedida
+        console.error('Erro ao enviar dados:', error.response ? error.response.data : error.message);
+        notifyError(error.response ? error.response.data.error : 'Erro ao enviar dados');
+        notifyError(error.message || 'Erro ao enviar dados')
+
+    }
+}
 

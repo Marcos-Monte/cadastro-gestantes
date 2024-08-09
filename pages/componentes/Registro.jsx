@@ -25,10 +25,13 @@ export default function Registro(props){
         <div className={styles.registro}  >
 
             <div className={styles.dados} >
-                <p className={styles.nome}>Nome: {props.nome}</p>
+                <p className={styles.nome}>Gestante: {props.nomeGestante}</p>
                 <p className={styles.dn}>Data de Nascimento: {props.dn}</p>
+                <p className={styles.dn}>D.U.M: {props.dum}</p>
+                <p className={styles.nome}>Gestações: {props.gestacoes}</p>
                 <p className={styles.endereco}>Endereço: {props.endereco}</p>
                 <p className={styles.telefone}>telefone: {props.telefone}</p>
+                <p className={styles.nome}>Parceiro: {props.parceiro}</p>
                 <p className={styles.equipe}>Equipe Responsável: {props.equipe}</p>
             </div>
 

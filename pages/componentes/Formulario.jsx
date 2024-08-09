@@ -1,24 +1,31 @@
 // Biblioteca para gerenciar estado dos componentes
 import { useState } from "react";
 
-// Import de instancia de Axios: Biblioteca para fazer requisições HTTP
-import { server } from "../api/index.js";
+// Função do Método POST
+import { criarRegistro } from "../api/index.js";
+
+// Funções de validação dos campos: Nome e Telefone
+import { handleNomeChange, handleWhatsChange } from "../services/service.jsx";
 
 // Estilos CSS
 import styles from "@/styles/Formulario.module.css";
-//Notificações (toast)
-import notifySuccess, { notifyError } from '../services/notifys.jsx';
-// Componente Botão
-import Botao from "./BotaoSubmit.jsx";
 
-export default function Formulario() {
+export default function Formulario(props) {
+
+  // Campos do novo registro
   const [telefone, setTelefone] = useState("");
   const [nome, setNome] = useState("");
   const [data, setData] = useState('');
   const [endereco, setEndereco] = useState('');
   const [equipe, setEquipe] = useState('');
+  const [parceiro, setParceiro] = useState('')
 
-  async function addUser(event){
+  // Campos da nova Gestação
+  const [dum, setDum] = useState('');
+  const [gestacoes, setGestacoes] = useState('');
+
+  // Compila os 'inputs' do formulário e cria um novo registro usando o método POST
+  function addUser(event){
   // Previne o comportamento Padrão. Impede que o formulário seja enviado de forma tradicional
   event.preventDefault();
 
@@ -28,61 +35,29 @@ export default function Formulario() {
     data: new Date(data), // Exemplo de como enviar a data no formato ISO
     endereco: endereco,
     telefone: telefone,
-    equipe: equipe
+    equipe: equipe,
+    parceiro: parceiro === ''? 'Não Declarado': parceiro,
+    dum: new Date(dum), // Exemplo de como enviar a data no formato ISO,
+    gestacoes: parseInt(gestacoes)
   }
+
+  // if(parceiro === ''){
+  //   setParceiro('Não Declarado')
+  // }
   
+  criarRegistro(registro)
 
-  try{
-    // Envia requisição 'POST' para o endpoint da API-backend com os dados do formulário
-    await server.post('/cadastro', registro, {
-      // Cabeçalho que indica que os dados estão em formato JSON
-      headers: {
-        'Content-Type' : 'application/json'
-      },
-    }); 
-   // Promessa se a requisição for bem sucecida
-    notifySuccess('Dados enviados com sucesso');
-    // Resetando os campos do formulário
-    setNome("");
-    setData("");
-    setEndereco("");
-    setTelefone("");
-    setEquipe("");
+  // Resetando os campos do formulário
+  setNome("");
+  setData("");
+  setEndereco("");
+  setTelefone("");
+  setEquipe("");
+  setParceiro("");
+  setDum("");
+  setGestacoes("");
 
-  } catch(error) {
-    // Promessa se a requisição não sucedida
-    console.error('Erro ao enviar dados:', error.response ? error.response.data : error.message);
-    notifyError(error.response ? error.response.data.error : 'Erro ao enviar dados');
-    notifyError(error.message || 'Erro ao enviar dados')
-
-  }
 }
-
- // Filtra a entrada e permite apenas letras e espaços. Atualiza o estado 'nome'
-  const handleNomeChange = (e) => {
-    const value = e.target.value;
-    // console.log("Input Value: ", value); // Verificar o valor do input
-    const filteredValue = value.replace(/[^a-zA-Z\s]/g, ""); // Remove caracteres não permitidos
-    setNome(filteredValue);
-    // console.log("Nome State: ", name); // Verificar o estado
-  };
-
-  // Remove catacteres não numéricos e formata o valor de entrada
-  const handleWhatsChange = (e) => {
-    const value = e.target.value;
-    // Remover todos os caracteres não numéricos
-    const onlyNums = value.replace(/[^\d]/g, "");
-
-    // Aplicar a máscara se tiver até 11 dígitos
-    if (onlyNums.length <= 11) {
-      const formattedValue = onlyNums.replace(
-        /^(\d{2})(\d{5})(\d{4})$/,
-        "($1) $2-$3"
-      );
-      setTelefone(formattedValue);
-    }
-    // Se tiver mais de 11 dígitos, não atualiza o estado (ignora entrada adicional)
-  };
 
   return (
     <form
@@ -106,7 +81,8 @@ export default function Formulario() {
             id="id-nome"
             name="data[nome]"
             value={nome}
-            onChange={handleNomeChange}
+            // A função anonima: garante que as funções handleNomeChange e handleWhatsChange sejam chamadas apenas quando o evento de mudança ocorrer, passando o evento e como argumento.
+            onChange={(e) => setNome(handleNomeChange(e))}
             placeholder="Nome Completo"
             required
           />
@@ -152,7 +128,8 @@ export default function Formulario() {
             type="tel"
             id="telefone"
             name="data[telefone]"
-            onChange={handleWhatsChange}
+            // A função anonima: garante que as funções handleNomeChange e handleWhatsChange sejam chamadas apenas quando o evento de mudança ocorrer, passando o evento e como argumento.
+            onChange={(e) => setTelefone(handleWhatsChange(e))}
             value={telefone}
             minLength={11}
             maxLength={11}
@@ -187,9 +164,60 @@ export default function Formulario() {
             </option>
           </select>
         </div>
+
+        <div className={styles.info}>
+          <label className={styles.label} htmlFor="id-parceiro">
+            Parceiro
+          </label>
+          <input
+            className={styles.input}
+            type="text"
+            id="id-parceiro"
+            name="data[parceiro]"
+            value={parceiro}
+            // A função anonima: garante que as funções handleNomeChange e handleWhatsChange sejam chamadas apenas quando o evento de mudança ocorrer, passando o evento e como argumento.
+            onChange={(e) => setParceiro(handleNomeChange(e))}
+            placeholder="Nome do Parceiro"
+          />
+        </div>
       </fieldset>
 
-      <Botao estilo="botaoSubmit" tipo="submit" nome="Cadastrar"/>
+      <fieldset className={styles.camposFormulario}>
+        <legend className={styles.tituloCampos}>Dados da Gestação</legend>
+
+        <div className={styles.info}>
+          <label className={styles.label} htmlFor="id-dum">
+            D.U.M
+          </label>
+          <input
+            className={styles.input}
+            type="date"
+            id="id-dum"
+            // max={data}
+            value={dum}
+            onChange={(e) => setDum(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className={styles.info}>
+          <label className={styles.label} htmlFor="id-qtdeGestacoes">
+            Gestações
+          </label>
+          <input
+            className={styles.input}
+            type="number"
+            id="id-qtdeGestacoes"
+            value={gestacoes}
+            onChange={(e) => setGestacoes(e.target.value)}
+            required
+          />
+        </div>
+
+      </fieldset>
+
+      {/* <Botao estilo="botaoSubmit" tipo="submit" nome="Cadastrar"/> */}
+      {props.botaoSubmit}
     </form>
   );
 }

@@ -1,11 +1,15 @@
 import styles from "@/styles/Home.module.css";
 import Head from "next/head";
 
+import Botao from "./componentes/BotaoSubmit";
 import Footer from "./componentes/Footer";
 import Formulario from "./componentes/Formulario";
 import Header from "./componentes/Header";
 
 export default function Home() {
+
+  const botao = <Botao estilo="botaoSubmit" tipo="submit" nome="Cadastrar"/>
+
   return (
     <>
       <Head>
@@ -20,7 +24,11 @@ export default function Home() {
         <main className={styles.main}>
 
           <section className={`${styles.container} limit`}>
-            <Formulario />
+            
+            <Formulario 
+              botaoSubmit={botao}
+            />
+            
           </section>
           
         </main>

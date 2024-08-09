@@ -1,4 +1,5 @@
-refactoring: componente principal apenas irá definir seu conteudo de acordo com a interação do usuário aos botões equivalentes.
+refactoring: Componentes (cadastro, formulario, gestantes, registro e service)
 
-feat: desenvolvida a logica GET nos componentes 'Gestantes e Geral'. Cada botão filtra a lista para uma equipe diferente e o geral mostrará dados de todas as equipes juntas
+feat: incorporados novos campos no formulário de cadastro
 
+feat: aplicação busca novos dados (gestantes cadastradas) a cada 5 segundos no componente 'Gestantes'. Isso garante que a mesma suma da tela alguns segundos após ser deletada da lista
