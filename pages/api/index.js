@@ -17,7 +17,7 @@ export const buscarDados = async () => {
         
     // Envia requisição 'GET' para o endpoint da API-backend com os dados do formulário
     try {
-        const resposta = await server.get('/');
+        const resposta = await server.get('');
         // console.log('Resposta da API:', resposta.data); // Verifique aqui
         resultado =  resposta.data // Dados armazenados na variável de estado
         // console.log('Resposta da API:', resultado); // Verifique aqui

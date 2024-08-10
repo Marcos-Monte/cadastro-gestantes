@@ -14,7 +14,7 @@ import Registro from "../componentes/Registro";
 import { atualizarRegistro, deletarRegistro } from '../api';
 
 // Função para formatar data de nascimento
-import { formatDate } from "../services/service";
+import formatDate from "../services/service";
 
 export default function Gestantes(props){
 
@@ -53,7 +53,7 @@ export default function Gestantes(props){
         } // Buscar dados a cada 5 segundos
 
          // Configurar intervalo de polling
-         const intervalo = setInterval(() => {
+        const intervalo = setInterval(() => {
             if (props.filtro) {
                 fetchData(props.filtro);
             } // Buscar dados a cada 5 segundos
@@ -62,9 +62,6 @@ export default function Gestantes(props){
         // Limpar o intervalo quando o componente for desmontado
         return () => clearInterval(intervalo);
         
-        
-
-       
 
     }, [props.filtro]); // Adiciona props.filtro ao array de dependências
     

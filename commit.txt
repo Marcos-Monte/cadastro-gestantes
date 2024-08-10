@@ -1,5 +1,6 @@
-refactoring: Componentes (cadastro, formulario, gestantes, registro e service)
+feat: criação de componente 'CardEquipe' que importa as informações das equipes do BD e mostra no navegador, através do componente 'Geral'
 
-feat: incorporados novos campos no formulário de cadastro
+feat: criada a função de 'filtrarRisco' que recebe: lista, equipe e risco. E retorna uma nova lista com os registros que cumpram o filtro.
 
-feat: aplicação busca novos dados (gestantes cadastradas) a cada 5 segundos no componente 'Gestantes'. Isso garante que a mesma suma da tela alguns segundos após ser deletada da lista
+style: criado 'module' de estilização do componente 'CardEquipe' e aprimorada resolução do 'module' 'Gestantes'
+

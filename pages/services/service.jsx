@@ -1,5 +1,5 @@
 // Formata data de nascimento (usando o fuso horário local)
-export function formatDate(dateString) {
+export default function formatDate(dateString) {
     const date = new Date(dateString);
     const day = String(date.getUTCDate()).padStart(2, '0');
     const month = String(date.getUTCMonth() + 1).padStart(2, '0');
@@ -33,7 +33,7 @@ export const handleNomeChange = (e) => {
     // console.log("Nome State: ", name); // Verificar o estado
 };
 
-  // Remove catacteres não numéricos e formata o valor de entrada
+// Remove catacteres não numéricos e formata o valor de entrada
 export const handleWhatsChange = (e) => {
     const value = e.target.value;
     // Remover todos os caracteres não numéricos
@@ -50,6 +50,16 @@ export const handleWhatsChange = (e) => {
     }
     // Se tiver mais de 11 dígitos, não atualiza o estado (ignora entrada adicional)
 };
+
+// Filtrar baseado no risco / equipe
+export const filtrarRisco = (lista, equipeSelecionada, riscoSelecionado) => {
+    const listaFiltrada = lista.filter(
+        (item) => (item.equipe === equipeSelecionada) && (item.risco === riscoSelecionado)
+        
+    )
+
+    return listaFiltrada.length
+}
 
 
 
