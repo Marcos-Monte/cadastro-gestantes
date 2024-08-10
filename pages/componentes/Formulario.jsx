@@ -23,6 +23,7 @@ export default function Formulario(props) {
   // Campos da nova Gestação
   const [dum, setDum] = useState('');
   const [gestacoes, setGestacoes] = useState('');
+  const [risco, setRisco] = useState('');
 
   // Compila os 'inputs' do formulário e cria um novo registro usando o método POST
   function addUser(event){
@@ -38,7 +39,8 @@ export default function Formulario(props) {
     equipe: equipe,
     parceiro: parceiro === ''? 'Não Declarado': parceiro,
     dum: new Date(dum), // Exemplo de como enviar a data no formato ISO,
-    gestacoes: parseInt(gestacoes)
+    gestacoes: parseInt(gestacoes),
+    risco: risco,
   }
 
   // if(parceiro === ''){
@@ -56,6 +58,7 @@ export default function Formulario(props) {
   setParceiro("");
   setDum("");
   setGestacoes("");
+  setRisco("");
 
 }
 
@@ -212,6 +215,31 @@ export default function Formulario(props) {
             onChange={(e) => setGestacoes(e.target.value)}
             required
           />
+        </div>
+
+        <div className={styles.info}>
+          <label className={styles.label} htmlFor="id-risco">
+            Risco
+          </label>
+          <select
+            className={styles.input}
+            name="data[risco]"
+            id="id-risco"
+            value={risco}
+            onChange={(event) => setRisco(event.target.value)}
+            required
+          >
+            <option className={styles.opcao} value="">
+              Escolha ---
+            </option>
+            <option className={styles.opcao} value="alto">
+              Alto Risco
+            </option>
+            <option className={styles.opcao} value="baixo">
+              Baixo Risco
+            </option>
+            
+          </select>
         </div>
 
       </fieldset>
